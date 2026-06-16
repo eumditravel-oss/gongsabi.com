@@ -13,26 +13,26 @@ final class PageController extends BaseController
     {
         $path = trim($request->path, '/');
         $page = basename($path) ?: 'company1';
-        $map = [
-            'company1' => ['대표이사 인사말', '공사비닷컴은 “왜?”라는 질문에서 시작되었습니다.', ['왜 건설 공사비는 쉽게 비교하기 어려운가.', '왜 내역서 작성에는 많은 시간과 비용이 필요한가.', '정확성을 바탕으로 한 빅데이터를 활용하여 공사기간과 예산을 절감합니다.']],
-            'company2' => ['기업소개', 'Standard, Big Data, Innovation을 바탕으로 건설 공사비 정보를 제공합니다.', ['정확성을 바탕으로 한 공사비 데이터', '공사기간과 예산 절감을 위한 정보 서비스', '시간과 비용이 많이 소요되는 내역서 작성을 빠르게 지원']],
-            'company3' => ['채용안내', '공사비 데이터와 건설 원가관리 서비스를 함께 만들어갈 인재를 기다립니다.', ['건축 적산 및 내역 검토', '공사비 데이터 관리', '교육 및 고객지원']],
-            'company4' => ['오시는길', '공사비닷컴 위치 및 문의처입니다.', ['대표전화 02.2202.2258', '업무 및 파트너 제휴 partner@gongsabi.com', '고객센터 cs@gongsabi.com']],
+        if ($page === 'company') {
+            $page = 'company1';
+        }
+        $tab = (string) $request->input('tab', '');
+        if ($page === 'company3' && $tab === '') {
+            $tab = 'talent';
+        }
+
+        $titles = [
+            'company1' => '대표이사 소개',
+            'company2' => '왜, 공사비닷컴인가?',
+            'company3' => '채용안내',
+            'company4' => '오시는 길',
         ];
-        [$heading, $lead, $items] = $map[$page] ?? $map['company1'];
-        return $this->view('pages/static', [
-            'title' => $heading,
+
+        return $this->view('pages/company', [
+            'title' => $titles[$page] ?? '회사소개',
             'section' => '회사소개',
             'active' => $page,
-            'menu' => [
-                'company1' => ['대표이사 인사말', '/front/company/company1'],
-                'company2' => ['기업소개', '/front/company/company2'],
-                'company3' => ['채용안내', '/front/company/company3'],
-                'company4' => ['오시는길', '/front/company/company4'],
-            ],
-            'heading' => $heading,
-            'lead' => $lead,
-            'items' => $items,
+            'tab' => $tab,
         ]);
     }
 
@@ -68,19 +68,11 @@ final class PageController extends BaseController
 
     public function contact(Request $request): Response
     {
-        return $this->view('pages/static', [
-            'title' => '문의처',
-            'section' => '고객센터',
-            'active' => 'contact',
-            'menu' => [
-                'notice' => ['공지사항', '/front/customer/notice'],
-                'pds' => ['자료실', '/front/customer/pds'],
-                'faq' => ['자주 묻는 질문', '/front/customer/faq'],
-                'qna' => ['Q&A', '/front/customer/qna'],
-            ],
-            'heading' => '문의처',
-            'lead' => '공사비닷컴 서비스, 업무 제휴, 교육 관련 문의를 접수합니다.',
-            'items' => ['대표전화 02.2202.2258', '업무 및 파트너 제휴 partner@gongsabi.com', '기타 문의 cs@gongsabi.com'],
+        return $this->view('pages/company', [
+            'title' => '오시는 길',
+            'section' => '회사소개',
+            'active' => 'company4',
+            'tab' => '',
         ]);
     }
 

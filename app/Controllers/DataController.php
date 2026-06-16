@@ -14,7 +14,19 @@ final class DataController extends BaseController
         $path = trim($request->path, '/');
         $type = basename($path) ?: 'gongsabi';
         if ($type === 'data') {
-            $type = 'gongsabi';
+            $type = 'index';
+        }
+
+        if ($type === 'index') {
+            return $this->view('data/index', [
+                'title' => '공사비 검색',
+                'dataType' => 'index',
+                'pageTitle' => '공사비 검색',
+                'pageLead' => '건물의 종류 / 면적 / 지역 / 착공년도를 선택하시면 면적당 공사비 정보를 찾으실 수 있습니다.',
+                'keyword' => '',
+                'condition' => [],
+                'rows' => [],
+            ]);
         }
 
         $keyword = trim((string) $request->input('keyword', ''));
