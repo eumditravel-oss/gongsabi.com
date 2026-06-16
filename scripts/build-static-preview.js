@@ -105,6 +105,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
   html = html.replace(/<div\b[^>]*id=["']codex-agent-overlay-root["'][^>]*><\/div>/gi, '');
   html = html.replace(/<script\b[^>]*src=["']chrome-extension:[^>]*><\/script>/gi, '');
   html = html.replace(/<link\s+rel=["']shortcut icon["']\s+href=["']data:image\/svg\+xml[^>]*>/i, '<link rel="shortcut icon" href="/static/img/favicon.ico">');
+  html = html.replace(/<base\b[^>]*>\s*/gi, '');
   html = html.replace(/(<head[^>]*>)/i, `$1\n    <base href="${prefix}">`);
   html = html.replace(/["'](?:\/static\/front\/css\/style\.css|public\/static\/front\/css\/style\.css)\?[^"']*/gi, `"${prefix}public/static/front/css/style-pages.css`);
   html = html.replace(/["'](?:\/static\/css\/admin\/style\.css|public\/static\/css\/admin\/style\.css)\?[^"']*/gi, `"${prefix}public/static/css/admin/style-pages.css`);
