@@ -1,49 +1,37 @@
 <?php
-$menus = [
-    'geonchuk' => ['건축 공사비', '/front/report/geonchuk'],
-    'goljo' => ['골조 공사비', '/front/report/goljo'],
-    'gigan' => ['공사기간의 산정', '/front/report/gigan'],
-    'ganjeob' => ['간접 공사비 계산', '/front/report/ganjeob'],
+$active = $reportType ?? 'geonchuk';
+$labels = [
+    'geonchuk' => ['건축 내역서 작성', '정확한 수량산출을 바탕으로 한 산출서, 내역서, 공사비 비교 자료를 제공합니다.'],
+    'goljo' => ['골조 내역서 작성', '비교할 수 있는 골조내역서를 제공합니다.'],
+    'gigan' => ['공사기간 산정', '관계법령과 기준, 건설기준, 산업안전보건 및 환경기준 등을 고려한 공사기간 산정 서비스입니다.'],
+    'ganjeob' => ['간접 공사비 계산', '건물 종류별 간접 공사비를 계산해주는 서비스입니다.'],
 ];
+[$heading, $lead] = $labels[$active] ?? [$serviceName, '공사비 관련 서비스를 제공합니다.'];
 ?>
-<section class="sub-visual"><div class="wrap"><h2>보고서</h2><p>건축 및 골조 내역서, 공사기간, 간접 공사비를 산정합니다.</p></div></section>
+<section class="sub-visual"><div class="wrap"><p>REPORT</p><h2>보고서</h2></div></section>
 <div class="wrap sub-layout">
-    <aside class="lnb"><h3>보고서</h3><?php foreach ($menus as $key => $menu): ?><a class="<?= $reportType === $key ? 'on' : '' ?>" href="<?= e($menu[1]) ?>"><?= e($menu[0]) ?></a><?php endforeach; ?></aside>
+    <aside class="lnb"><h3>보고서</h3><a class="<?= $active === 'geonchuk' ? 'on' : '' ?>" href="/front/report/geonchuk">건축 내역서 작성</a><a class="<?= $active === 'goljo' ? 'on' : '' ?>" href="/front/report/goljo">골조 내역서 작성</a><a class="<?= $active === 'gigan' ? 'on' : '' ?>" href="/front/report/gigan">공사기간 산정</a><a class="<?= $active === 'ganjeob' ? 'on' : '' ?>" href="/front/report/ganjeob">간접 공사비 계산</a></aside>
     <section class="sub-content">
-        <div class="path">HOME &gt; 보고서 &gt; <?= e($serviceName) ?></div>
-        <h3 class="content-title"><?= e($serviceName) ?></h3>
-        <p class="content-lead"><?= e($serviceLead) ?></p>
+        <div class="content-title"><h1><?= e($heading) ?></h1><p><?= e($lead) ?></p></div>
         <div class="ready-box">
-            <strong>서비스 오픈 준비중 입니다.</strong>
-            <p>기존 공사비닷컴의 공개 화면 흐름을 유지하면서, 새 호스팅 환경에서는 아래 산정 API와 저장 로직을 사용할 수 있도록 구성했습니다.</p>
+            <h2>서비스 오픈 준비중 입니다.</h2>
+            <p><?= e($lead) ?></p>
+            <?php if ($active === 'ganjeob'): ?><p class="warn">현재 휴대폰결제가 불가능합니다.</p><?php endif; ?>
         </div>
-
-        <form class="report-form estimate-form" method="post" action="/front/report/estimate">
-            <?= csrf_field() ?>
-            <input type="hidden" name="report_type" value="<?= e($reportType) ?>">
-            <h4>산정 조건 입력</h4>
-            <div class="form-grid">
-                <label>건물의 종류<select name="building_type"><option value="office">업무시설</option><option value="housing">공동주택</option><option value="commercial">근린생활시설</option><option value="factory">공장/창고</option><option value="medical">의료시설</option><option value="education">교육연구시설</option></select></label>
-                <label>구조<select name="structure"><option value="reinforced_concrete">철근콘크리트조</option><option value="steel">철골조</option><option value="src">SRC조</option><option value="wood">목구조</option><option value="remodeling">리모델링</option></select></label>
-                <label>지역<select name="region"><option value="seoul">서울</option><option value="gyeonggi">경기/인천</option><option value="local">지방</option><option value="jeju">제주</option></select></label>
-                <label>마감등급<select name="finish_grade"><option value="economy">경제형</option><option value="standard" selected>표준형</option><option value="premium">고급형</option><option value="luxury">최고급형</option></select></label>
-                <label>연면적<input type="number" name="area" min="1" step="1" required placeholder="㎡"></label>
-                <label>지상층수<input type="number" name="floors" min="1" value="5"></label>
-                <label>지하층수<input type="number" name="basement" min="0" value="1"></label>
-                <button type="submit">산정하기</button>
-            </div>
-        </form>
-        <div id="estimate-result" class="estimate-result"></div>
-
-        <div class="calc-logic old-box">
-            <h4>재구현 산정 로직</h4>
-            <ol>
-                <li>기준단가 = 구조 기준단가 × 건물종류 보정률 × 지역 보정률 × 마감등급 보정률</li>
-                <li>직접공사비 = 연면적 × 기준단가</li>
-                <li>층수/지하층 보정 = 직접공사비 × 보정률</li>
-                <li>간접공사비 = 보정 직접공사비 × 규모별 간접비율</li>
-                <li>총공사비 = 직접공사비 + 보정금액 + 간접비 + 부가세</li>
-            </ol>
-        </div>
+        <details class="restore-logic">
+            <summary>복원용 임시 산정 로직 확인</summary>
+            <p>원본 DB와 산정식이 없는 상태에서 운영 테스트를 위해 넣은 임시 계산기입니다. 실제 운영 전 기존 DB 백업 또는 검증된 단가표로 교체해야 합니다.</p>
+            <form class="form-panel report-form">
+                <?= csrf_field() ?>
+                <input type="hidden" name="report_type" value="<?= e($reportType) ?>">
+                <label>연면적(㎡)<input type="number" min="1" step="0.1" name="area" value="330" required></label>
+                <label>층수<input type="number" min="1" name="floors" value="3" required></label>
+                <label>구조<select name="structure"><option value="reinforced_concrete">철근콘크리트</option><option value="steel">철골조</option><option value="wood">목구조</option><option value="remodeling">리모델링</option></select></label>
+                <label>마감 등급<select name="finish_grade"><option value="economy">경제형</option><option value="standard" selected>표준형</option><option value="premium">고급형</option></select></label>
+                <label>지역<select name="region"><option value="seoul">서울</option><option value="metro">수도권</option><option value="local">지방</option><option value="jeju">제주</option></select></label>
+                <button type="submit" class="btn primary">산정하기</button>
+            </form>
+            <div class="result-panel" id="estimate-result"><h2>공사비 상세</h2><dl><div><dt>단가</dt><dd>-</dd></div><div><dt>직접공사비</dt><dd>-</dd></div><div><dt>층수 보정</dt><dd>-</dd></div><div><dt>간접비</dt><dd>-</dd></div><div><dt>부가세</dt><dd>-</dd></div><div><dt>총 공사비</dt><dd>-</dd></div></dl></div>
+        </details>
     </section>
 </div>

@@ -53,6 +53,7 @@ final class BoardRepository
                 $params['keyword'] = '%' . $keyword . '%';
             }
             $sql .= ' ORDER BY is_notice DESC, id DESC LIMIT 50';
+
             $stmt = $this->db->prepare($sql);
             $stmt->execute($params);
             $rows = $stmt->fetchAll();
@@ -66,9 +67,9 @@ final class BoardRepository
     public function find(int $id): ?array
     {
         if (!$this->db) {
-            foreach (['notice', 'pds', 'faq'] as $type) {
+            foreach (['notice','pds','faq'] as $type) {
                 foreach ($this->fallback($type) as $row) {
-                    if ((int) $row['id'] === $id) {
+                    if ((int)$row['id'] === $id) {
                         return $row;
                     }
                 }
@@ -81,13 +82,6 @@ final class BoardRepository
             $row = $stmt->fetch();
             return is_array($row) ? $row : null;
         } catch (Throwable) {
-            foreach (['notice', 'pds', 'faq'] as $type) {
-                foreach ($this->fallback($type) as $row) {
-                    if ((int) $row['id'] === $id) {
-                        return $row;
-                    }
-                }
-            }
             return null;
         }
     }
@@ -109,32 +103,32 @@ final class BoardRepository
     /** @return array<int, array<string, mixed>> */
     private function fallback(string $type): array
     {
-        $items = [
+        $sets = [
             'notice' => [
-                ['대한민국 공사비 정보 플랫폼, 공사비닷컴이 오픈하였습니다.', '면적당 공사비 정보의 샘플 검색, 공사 단가 검색, 골조 수량 검색 등 온라인 회원 서비스를 제공합니다.', '2020-11-27', 1],
-                ['공사비닷컴 온라인 회원이 되시면', '면적당 공사비 정보의 샘플 검색과 공사비 교육, 자료실을 이용하실 수 있습니다.', '2020-11-27', 1],
-                ['공사비닷컴 리뉴얼 준비 안내', '기존 경로와 메뉴 구성을 유지하면서 새 호스팅에 맞게 재구현합니다.', date('Y-m-d'), 0],
+                ['공사비닷컴 온라인 회원이 되시면', '면적당 공사비 정보의 샘플 검색, 공사 단가 검색의 샘플 검색, 골조 면적별 수량 검색의 샘플 검색을 무료로 제공합니다.', '2020-11-27 00:00:00'],
+                ['공사비닷컴 리뉴얼 준비 안내', '기존 서비스 복원을 위한 임시 공지입니다.', date('Y-m-d H:i:s')],
+                ['신규 회원 DB 운영 안내', '회원 정보와 검색 권한은 신규 DB에서 관리됩니다.', date('Y-m-d H:i:s')],
             ],
             'pds' => [
-                ['공사비 산정 기초 자료', '공사비와 관련한 다양하고 유용한 정보를 제공합니다.', date('Y-m-d'), 0],
-                ['내역서 검토 체크리스트', '건축 및 골조 내역서 검토 시 확인할 항목입니다.', date('Y-m-d'), 0],
-                ['공사기간 산정 참고표', '면적, 층수, 구조 조건별 공사기간 산정 참고표입니다.', date('Y-m-d'), 0],
+                ['공사비 산정 기초 자료', '공사비 산정 흐름을 확인할 수 있는 기초 자료입니다.', date('Y-m-d H:i:s')],
+                ['내역서 검토 체크리스트', '건축 및 골조 내역서 검토 항목입니다.', date('Y-m-d H:i:s')],
+                ['공사기간 산정 참고표', '공사기간 산정 기준 검토용 참고표입니다.', date('Y-m-d H:i:s')],
             ],
             'faq' => [
-                ['전화 상담이 어려운 경우 어떻게 하나요?', "공사비닷컴의 이메일 'cs@gongsabi.com'로 문의 남겨주시면 순차적으로 도와드립니다.", date('Y-m-d'), 0],
-                ['비회원도 공사비 검색이 가능한가요?', '비회원과 무료회원은 샘플만 검색이 가능하고 유료회원 가입 시 전체 정보를 검색할 수 있습니다.', date('Y-m-d'), 0],
-                ['스크랩한 공사비 자료는 어디서 보나요?', '마이페이지 > 공사비검색 메뉴에서 확인할 수 있도록 구성합니다.', date('Y-m-d'), 0],
+                ['회원가입은 어떻게 하나요?', '무료회원과 유료회원으로 가입할 수 있습니다.', date('Y-m-d H:i:s')],
+                ['결제 후 영수증은 어디서 확인하나요?', '마이페이지에서 확인할 수 있습니다.', date('Y-m-d H:i:s')],
+                ['공사비 검색 결과는 어디서 확인하나요?', '마이페이지 > 공사비검색에서 스크랩 내용을 확인할 수 있습니다.', date('Y-m-d H:i:s')],
             ],
-        ][$type] ?? [['게시글 준비중', '관리자에서 실제 내용을 등록하면 이 영역에 노출됩니다.', date('Y-m-d'), 0]];
-
-        return array_map(static fn (array $item, int $index): array => [
+        ];
+        $rows = $sets[$type] ?? [['게시글 준비중', '관리자에서 실제 내용을 등록하면 이 영역에 노출됩니다.', date('Y-m-d H:i:s')]];
+        return array_map(static fn (array $row, int $index): array => [
             'id' => $index + 1,
             'board_type' => $type,
-            'title' => $item[0],
-            'content' => $item[1],
-            'is_notice' => $item[3],
-            'created_at' => $item[2] . ' 00:00:00',
+            'title' => $row[0],
+            'content' => $row[1],
+            'created_at' => $row[2],
             'views' => 0,
-        ], $items, array_keys($items));
+            'is_notice' => $index === 0 ? 1 : 0,
+        ], $rows, array_keys($rows));
     }
 }

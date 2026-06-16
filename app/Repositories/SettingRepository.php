@@ -27,7 +27,6 @@ final class SettingRepository
         if (!$this->db) {
             return [];
         }
-
         try {
             $rows = $this->db->query('SELECT setting_key, setting_value FROM site_settings')->fetchAll();
         } catch (Throwable) {
