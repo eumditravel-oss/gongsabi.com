@@ -1,16 +1,25 @@
-# gongsabi.com
+# gongsabi.com 재구현 패키지
 
-공사비닷컴 재구현 프로젝트입니다. 기존 공개 사이트의 URL 구조(`/front/...`)를 유지하면서, 새 DB에 데이터가 쌓이는 방식으로 회원, 고객센터, 공사비 자료, 교육, 결제 검증, 관리자 기능을 다시 구현합니다.
+현재 운영 사이트의 소유권은 있으나 기존 제작자가 관리하지 않는 상황을 전제로, 기존 공개 URL 구조(`/front/...`)와 검색 결과에 노출된 메뉴/문구/서비스 흐름을 기준으로 재구현한 PHP 사이트입니다.
 
-## 기술 방향
+## 반영 범위
 
-- PHP 8 이상, Composer 없이 동작하는 경량 MVC 구조
-- MySQL 운영 DB, SQLite 로컬 개발 DB 지원
-- 기존 경로 호환: `/front/company`, `/front/report/geonchuk`, `/front/customer/notice` 등
-- PortOne/Iamport 결제 호출 및 서버 검증 골격 포함
-- Apache `.htaccess` 기반 라우팅, PHP 내장 서버 개발 가능
+- 기존 URL 구조 유지
+  - `/front/company/company1~4`
+  - `/front/report/geonchuk`, `/front/report/goljo`, `/front/report/gigan`, `/front/report/ganjeob`
+  - `/front/data/gongsabi`, `/front/data/danga`, `/front/data/goljo`
+  - `/front/education/lecture`, `/front/education/book`, `/front/education/youtube`
+  - `/front/community`, `/front/community/market`, `/front/community/partners`, `/front/community/recruit`
+  - `/front/customer/notice`, `/front/customer/pds`, `/front/customer/faq`, `/front/customer/qna`, `/front/customer/contact`
+- 구형 기업형 사이트에 가까운 1200px 고정형 레이아웃
+- 상단 유틸 메뉴, 로고, GNB 드롭다운, 좌측 LNB, 게시판형 표 구성
+- 면적당 공사비 검색 / 공사 단가 검색 / 골조 면적별 수량 화면 구현
+- 비회원·무료회원 샘플 검색, 유료회원 잠금 행 처리
+- 보고서 페이지의 “서비스 오픈 준비중 입니다.” 안내와 산정 로직 API 동시 구성
+- 공사비 교육, 동영상 강의, 커뮤니티, 고객센터, Q&A, 업무제휴 폼
+- 회원가입, 로그인, 관리자, 사이트 설정, PortOne 결제 골격 유지
 
-## 빠른 시작
+## 실행 방법
 
 ```powershell
 Copy-Item .env.example .env
@@ -18,11 +27,13 @@ php database/migrate.php
 php -S localhost:8080 -t public
 ```
 
-현재 작업 환경에는 PHP 실행 파일이 없을 수 있습니다. 서버나 로컬 PC에 PHP를 설치한 뒤 위 명령을 실행하면 됩니다.
+브라우저에서 `http://localhost:8080` 접속.
 
-## 운영 설정
+## 운영 배포
 
-`.env`에 실제 값 입력:
+호스팅 업체에 전달할 때는 `public/` 폴더를 웹 문서 루트로 지정해야 합니다. Apache 환경이면 `public/.htaccess`가 `/front/...` 경로를 PHP 라우터로 연결합니다.
+
+`.env` 주요 값:
 
 ```dotenv
 APP_ENV=production
@@ -33,32 +44,22 @@ DB_DATABASE=gongsabi
 DB_USERNAME=gongsabi
 DB_PASSWORD=change-me
 
+ADMIN_EMAIL=admin@gongsabi.com
+ADMIN_PASSWORD=change-me-now
+
 PORTONE_MERCHANT_CODE=imp97740463
 PORTONE_API_KEY=...
 PORTONE_API_SECRET=...
 PAYMENT_VERIFY=true
 ```
 
-## 구현 상태
+## 100% 일치에 필요한 추가 자료
 
-- 공개 페이지와 기존 메뉴 구조
-- 회원가입, 로그인, 로그아웃
-- 공지사항, 자료실, FAQ, Q&A 저장 구조
-- 공사비 산정 서비스 계층과 결과 저장
-- 교육 상품 주문 생성
-- PortOne 결제 완료 서버 검증
-- 관리자 대시보드
+현재 `www.gongsabi.com`은 외부 접근 시 타임아웃 또는 502가 발생해 실제 HTML/CSS/이미지를 직접 내려받을 수 없습니다. 따라서 이 패키지는 검색 결과에 노출된 공개 정보와 업로드된 초안 기준의 재구현판입니다. 픽셀 단위 100% 일치를 하려면 다음 중 하나가 필요합니다.
 
-기존 서버 DB 없이 새로 시작하는 전제이므로, 공개 콘텐츠와 실제 산식은 운영하면서 계속 채워 넣는 구조입니다.
+1. 호스팅 업체가 보관 중인 기존 웹 루트 전체 백업
+2. 기존 DB 백업
+3. 주요 페이지 스크린샷: 메인, 공사비 자료, 보고서, 교육, 커뮤니티, 고객센터, 로그인/회원가입
+4. 기존 로고/배너/아이콘 이미지 원본
 
-
-## 2026-06 UI 보강판
-
-- `index.html`: GitHub Pages용 정적 미리보기 홈 화면을 전문 B2B 공사비 플랫폼 형태로 재구성했습니다.
-- `public/static/css/site.css`: 상단 유틸 메뉴, 드롭다운 GNB, 메인 히어로, 빠른 검색, 서비스 카드, 데이터 패널, 교육/공지 영역 스타일을 전면 정리했습니다.
-- `app/Views/layouts/front.php`: PHP 운영 화면의 헤더/푸터와 드롭다운 메뉴 구조를 정리했습니다.
-- `app/Views/home/index.php`: 운영 홈 화면을 정적 미리보기와 같은 정보 구조로 맞췄습니다.
-- `app/Views/data/index.php`: 자료 검색 화면에 탭과 필터 영역을 추가했습니다.
-- `app/Views/report/form.php`: 산정 결과 표시 항목을 보강했습니다.
-
-타 사이트의 로고, 이미지, 고유 문구, DB, HTML/CSS를 복사하지 않고 동일한 서비스 흐름을 가진 독자 UI로 구성했습니다.
+위 자료가 있으면 HTML 구조, CSS 폭/간격/색상, 이미지, 문구, 게시판 데이터까지 더 정확하게 맞출 수 있습니다.

@@ -1,13 +1,10 @@
-<section class="page-title">
-    <p>POLICY</p>
-    <h1><?= e($heading) ?></h1>
-</section>
-
-<section class="content-band prose">
-    <h2>제1조 목적</h2>
-    <p>본 문서는 공사비닷컴 서비스 운영에 필요한 기본 정책을 정리한 초안입니다.</p>
-    <h2>제2조 회원 정보</h2>
-    <p>회원 정보는 서비스 제공, 문의 응대, 결제 검증, 이용 이력 관리 목적으로 사용합니다.</p>
-    <h2>제3조 결제와 환불</h2>
-    <p>결제는 PortOne 서버 검증 후 완료 처리하며, 환불 정책은 운영자가 관리자에서 고지합니다.</p>
-</section>
+<section class="sub-visual"><div class="wrap"><h2><?= e($heading ?? '') ?></h2><p>공사비닷컴 서비스 이용 정책</p></div></section>
+<div class="wrap sub-content single">
+    <div class="path">HOME &gt; <?= e($heading ?? '') ?></div>
+    <h3 class="content-title"><?= e($heading ?? '') ?></h3>
+    <div class="static-card old-box prose">
+        <p>본 문서는 공사비닷컴 재구현 사이트의 기본 약관/개인정보처리방침 초안입니다. 운영 전 실제 사업자 정책에 맞게 보완해야 합니다.</p>
+        <h4>수집 항목</h4><p>회원가입, 문의, 결제 처리에 필요한 이름, 이메일, 연락처, 회사명, 결제 식별정보를 수집할 수 있습니다.</p>
+        <h4>이용 목적</h4><p>회원 관리, 서비스 제공, 결제 확인, 고객 문의 대응, 공지 전달에 사용합니다.</p>
+    </div>
+</div>
