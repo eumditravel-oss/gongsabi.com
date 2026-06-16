@@ -1,10 +1,12 @@
-<section class="gs-visual">
-    <div class="gs-visual-copy">
-        <h2>건축 공사 수량 산출 및 내역서 작성의 자존심</h2>
-        <p>현동명 건설 원가 관리 강의</p>
-        <a href="/front/education/lecture">강의실 바로가기→</a>
+<section class="gs-visual gs-auto-slider" data-slider="hero" data-interval="5200">
+    <div class="gs-visual-viewport">
+        <div class="gs-visual-track">
+            <div class="gs-visual-slide"><img src="<?= asset('img/hero-slide-01.jpg') ?>" alt="건축 공사 수량 산출 및 내역서 작성의 자존심"></div>
+            <div class="gs-visual-slide"><img src="<?= asset('img/hero-slide-02.jpg') ?>" alt="공사비닷컴 공사비 검색 안내"></div>
+            <div class="gs-visual-slide"><img src="<?= asset('img/hero-slide-03.jpg') ?>" alt="현장기술자를 위한 건축견적이야기"></div>
+            <div class="gs-visual-slide"><img src="<?= asset('img/hero-slide-04.jpg') ?>" alt="CON COST 바로가기"></div>
+        </div>
     </div>
-    <div class="gs-slider-dots" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span></div>
 </section>
 
 <section class="gs-business">
@@ -68,8 +70,15 @@
     </article>
 </section>
 
-<section class="gs-banner-wrap">
-    <button type="button" aria-label="이전">‹</button>
-    <img src="<?= asset('img/bottom-banner-placeholder.jpg') ?>" alt="광고 배너 임시 이미지">
-    <button type="button" aria-label="다음">›</button>
+<section class="gs-banner-wrap gs-banner-slider" data-slider="banner" data-interval="4800">
+    <button type="button" class="gs-banner-prev" aria-label="이전">‹</button>
+    <div class="gs-banner-viewport">
+        <div class="gs-banner-track">
+            <div class="gs-banner-slide"><img src="<?= asset('img/bottom-slide-01.jpg') ?>" alt="건영기술단 배너"></div>
+            <div class="gs-banner-slide"><img src="<?= asset('img/bottom-slide-02.jpg') ?>" alt="강릉건설 배너"></div>
+            <div class="gs-banner-slide"><img src="<?= asset('img/bottom-slide-03.jpg') ?>" alt="협력사 배너"></div>
+            <div class="gs-banner-slide"><img src="<?= asset('img/bottom-slide-04.jpg') ?>" alt="건축사사무소 배너"></div>
+        </div>
+    </div>
+    <button type="button" class="gs-banner-next" aria-label="다음">›</button>
 </section>

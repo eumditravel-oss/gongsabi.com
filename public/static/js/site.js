@@ -34,3 +34,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// v7: 메인 비주얼과 하단 배너를 원본처럼 우측→좌측 자동 슬라이드로 동작시킴
+(function () {
+  function setupLoopSlider(root, trackSelector, slideSelector, prevSelector, nextSelector) {
+    if (!root) return;
+    const track = root.querySelector(trackSelector);
+    if (!track) return;
+    let slides = Array.from(track.querySelectorAll(slideSelector));
+    if (slides.length <= 1) return;
+
+    const firstClone = slides[0].cloneNode(true);
+    firstClone.setAttribute('aria-hidden', 'true');
+    track.appendChild(firstClone);
+    slides = Array.from(track.querySelectorAll(slideSelector));
+
+    let index = 0;
+    let timer = null;
+    const interval = Number(root.dataset.interval || 5000);
+
+    function move(toIndex, withTransition) {
+      if (!withTransition) track.classList.add('no-transition');
+      else track.classList.remove('no-transition');
+      index = toIndex;
+      track.style.transform = 'translateX(' + (-100 * index) + '%)';
+      if (!withTransition) {
+        track.offsetHeight;
+        track.classList.remove('no-transition');
+      }
+    }
+
+    function next() { move(index + 1, true); }
+    function prev() {
+      if (index === 0) {
+        move(slides.length - 1, false);
+        requestAnimationFrame(() => requestAnimationFrame(() => move(slides.length - 2, true)));
+      } else {
+        move(index - 1, true);
+      }
+    }
+    function restart() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(next, interval);
+    }
+
+    track.addEventListener('transitionend', () => {
+      if (index === slides.length - 1) move(0, false);
+    });
+
+    const nextBtn = nextSelector ? root.querySelector(nextSelector) : null;
+    const prevBtn = prevSelector ? root.querySelector(prevSelector) : null;
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); restart(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); restart(); });
+
+    root.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
+    root.addEventListener('mouseleave', restart);
+    move(0, false);
+    restart();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setupLoopSlider(document.querySelector('[data-slider="hero"]'), '.gs-visual-track', '.gs-visual-slide');
+    setupLoopSlider(document.querySelector('[data-slider="banner"]'), '.gs-banner-track', '.gs-banner-slide', '.gs-banner-prev', '.gs-banner-next');
+  });
+})();
