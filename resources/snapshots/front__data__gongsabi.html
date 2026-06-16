@@ -1,0 +1,739 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=1280">
+
+    <title>공사비닷컴</title>
+
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- DatePicker -->
+    <link rel="stylesheet" href="/static/vendor/air-datepicker/css/datepicker.min.css">
+
+    <link rel="stylesheet" href="/static/front/css/core-style.css">
+    <link rel="stylesheet" href="/static/front/css/style.css?version=1781591723">
+
+    <link rel="stylesheet" href="/static/front/css/responsive/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="/static/js/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="/static/js/slick/slick-theme.css"/>
+    
+    <link rel="stylesheet" type="text/css" href="/static/js/modal-video/modal-video.min.css"/>
+
+    <script src="/static/front/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="/static/front/js/bootstrap/popper.min.js"></script>
+    <script src="/static/front/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- slick (http://kenwheeler.github.io/slick) -->
+    <script src="/static/js/slick/slick.min.js"></script>
+    <!-- jquery modal video (https://appleple.github.io/modal-video) -->
+    <script src="/static/js/modal-video/jquery-modal-video.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script>
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp97740463'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+    </script>
+</head>
+
+<body class="kor">
+    <header>
+        <div class="gnb_area">
+            <ul class="gnb_menu">
+                <li>
+                    <a href="/front/customer">고객센터&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+                    <ul class="sub_menu">
+                        <li><a href="/front/customer/notice">공지사항</a></li>
+                        <li><a href="/front/customer/pds">자료실</a></li>
+                        <li><a href="/front/customer/faq">자주 묻는 질문</a></li>
+                        <li><a href="/front/customer/qna">Q&A</a></li>
+                    </ul>
+                </li>
+                                <li><a href="/front/auth/regist">회원가입</a></li>
+                <li><a href="/front/auth/login">로그인</a></li>
+                            </ul>
+            <ul class="translate_menu">
+                <li>
+                    <a href="#">KOR</a>
+                    <ul class="sub_menu">
+                        <li><a href="#" onclick="change_language('KOR');">KOR</a></li>
+                        <li><a href="#" onclick="change_language('ENG');">ENG</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="header_wrapper">
+            <div class="header_logo">
+                <div class="logo_area">
+                    <a href="/"><img src="/static/img/logo.png" class="logo_img"></a>
+                </div>
+            </div>
+            <div class="header_menu">
+                <div class="banner_area">
+                </div>
+                <div class="menu_area">
+                    <a href="#" class="all_menu"><i class="fa fa-bars"></i></a>
+                    <ul class="all_menu_wrapper">
+                                                <li class=""><a href="/front/company">회사소개</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/company/company1">대표이사 인사말</a></li>
+                                                                <li><a href="/front/company/company2">기업소개</a></li>
+                                                                <li><a href="/front/company/company3">채용안내</a></li>
+                                                                <li><a href="/front/company/company4">오시는길</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class="on"><a href="/front/data">공사비 검색</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/data/gongsabi">면적당 공사비 검색</a></li>
+                                                                <li><a href="/front/data/danga">공사 단가 검색</a></li>
+                                                                <li><a href="/front/data/goljo">골조 면적별 수량</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class=""><a href="/front/report">내역서 작성</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/report/geonchuk">건축 내역서 작성</a></li>
+                                                                <li><a href="/front/report/goljo">골조 내역서 작성</a></li>
+                                                                <li><a href="/front/report/gigan">공사기간 산정</a></li>
+                                                                <li><a href="/front/report/ganjeob">간접 공사비 계산</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class=""><a href="/front/education">공사비 교육</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/education/youtube">동영상 교육</a></li>
+                                                                <li><a href="/front/education/book">교재 구매</a></li>
+                                                                <li><a href="/front/education/lecture">강의신청</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class=""><a href="/front/community">건설 장터</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/community/market">현장 자재 거래</a></li>
+                                                                <li><a href="/front/community/recruit">구인 / 구직</a></li>
+                                                                <li><a href="/front/community/gongsabi">공사비 작성 의뢰</a></li>
+                                                                <li><a href="/front/community/partners">Partners</a></li>
+                                                            </ul>
+                        </li>
+                                            </ul>
+                    <ul class="root_menu">
+                                                <li class=""><a href="/front/company">회사소개</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/company/company1">대표이사 인사말</a></li>
+                                                                <li><a href="/front/company/company2">기업소개</a></li>
+                                                                <li><a href="/front/company/company3">채용안내</a></li>
+                                                                <li><a href="/front/company/company4">오시는길</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class="on"><a href="/front/data">공사비 검색</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/data/gongsabi">면적당 공사비 검색</a></li>
+                                                                <li><a href="/front/data/danga">공사 단가 검색</a></li>
+                                                                <li><a href="/front/data/goljo">골조 면적별 수량</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class=""><a href="/front/report">내역서 작성</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/report/geonchuk">건축 내역서 작성</a></li>
+                                                                <li><a href="/front/report/goljo">골조 내역서 작성</a></li>
+                                                                <li><a href="/front/report/gigan">공사기간 산정</a></li>
+                                                                <li><a href="/front/report/ganjeob">간접 공사비 계산</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class=""><a href="/front/education">공사비 교육</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/education/youtube">동영상 교육</a></li>
+                                                                <li><a href="/front/education/book">교재 구매</a></li>
+                                                                <li><a href="/front/education/lecture">강의신청</a></li>
+                                                            </ul>
+                        </li>
+                                                <li class=""><a href="/front/community">건설 장터</a>
+                            <ul class="sub_menu">
+                                                                <li><a href="/front/community/market">현장 자재 거래</a></li>
+                                                                <li><a href="/front/community/recruit">구인 / 구직</a></li>
+                                                                <li><a href="/front/community/gongsabi">공사비 작성 의뢰</a></li>
+                                                                <li><a href="/front/community/partners">Partners</a></li>
+                                                            </ul>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script>
+    $(function() {
+        $('.gnb_menu > li')
+        .on('mouseenter', function() {
+            $(this).addClass('on').find('.sub_menu').show();
+        })
+        .on('mouseleave', function() {
+            $(this).removeClass('on').find('.sub_menu:visible').hide();
+        });
+
+        $('.translate_menu > li')
+        .on('mouseenter', function() {
+            $(this).addClass('on').find('.sub_menu').show();
+        })
+        .on('mouseleave', function() {
+            $(this).removeClass('on').find('.sub_menu:visible').hide();
+        });
+
+        $('.root_menu > li')
+        .on('mouseenter', function() {
+            $(this).addClass('on').find('.sub_menu').show();
+        })
+        .on('mouseleave', function() {
+            $(this).removeClass('on').find('.sub_menu:visible').hide();
+        });
+    });
+    </script><div class="sub_header_wrapper">
+	<div class="sub_header_area">
+		<span class="home"><a href="/"><i class="fa fa-home"></i></a></span>
+		<span class="dep1">
+			<button class="dep1_btn">공사비 검색</button>
+			<ul class="dep1_list">
+								<li class=""><a href="/front/company">회사소개</a></li>
+								<li class="on"><a href="/front/data">공사비 검색</a></li>
+								<li class=""><a href="/front/report">내역서 작성</a></li>
+								<li class=""><a href="/front/education">공사비 교육</a></li>
+								<li class=""><a href="/front/community">건설 장터</a></li>
+								<li class=""><a href="/front/mypage">마이페이지</a></li>
+								<li class=""><a href="/front/customer">고객센터</a></li>
+							</ul>
+		</span>
+		<span class="dep2">
+			<button class="dep2_btn">면적당 공사비 검색</button>
+			<ul class="dep2_list">
+								<li class="on"><a href="/front/data/gongsabi">면적당 공사비 검색</a></li>
+								<li class=""><a href="/front/data/danga">공사 단가 검색</a></li>
+								<li class=""><a href="/front/data/goljo">골조 면적별 수량</a></li>
+							</ul>
+		</span>
+	</div>
+</div>
+<script>
+$(function() {
+	$('.dep1 .dep1_btn').on('click', function() {
+		if ( $('.dep1_list').is(':visible') )
+			$('.dep1_list').hide();
+		else {
+			$('.dep1_list').show();
+			$('.dep2_list').hide();
+		}
+	});
+	$('.dep2 .dep2_btn').on('click', function() {
+		if ( $('.dep2_list').is(':visible') )
+			$('.dep2_list').hide();
+		else {
+			$('.dep2_list').show();
+			$('.dep1_list').hide();
+		}
+	});
+});
+</script>
+    <div class="classy-hero-blocks hero-blocks-3 height-400 background-overlay-white">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="hero-block-content text-center">
+                        <h2 class="m-bottom-30 underline-mc">면적당 공사비 검색</h2>
+                        <p>
+                            건물의 종류 / 면적 / 지역 / 착공년도를 선택하시면<br>
+                            면적당 공사비 정보를 찾으실 수 있습니다.<br>
+                            비회원과 무료회원일 경우, 샘플만 검색이  가능하고<br>
+                            <a href="/front/auth/regist"><span class="mfc fb">유료회원 가입</span></a>을 하시면 공사비의 모든 정보를 검색하실 수 있습니다.
+                        </p>
+                        <p class="fsxs mt-5">※ 공사비닷컴에서 제공되는 서비스 및 자료는 참고용이므로<br>손실이나 손해에 관하여 법적책임을 지지 않습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="search_wrapper">
+                    <form method="get" class="">
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <div class="form-group down_arrow">
+                                	<div class="dropdown">
+									    <div class="dropdown-title">
+										    																																																							건물 종류									    </div>
+
+									    <div class="custom-dropdown-menu">
+									    	<div class="dropdown-menu-option" data-value="">건물 종류</div>
+									        <div class="dropdown-menu-option" data-value="1">아파트, 주상복합, 오피스텔, 빌라</div>
+									        <div class="dropdown-menu-option" data-value="2">근생, 오피스, 연구시설, 관청</div>
+									        <div class="dropdown-menu-option" data-value="3">문화, 종교, 판매, 의료, 운동</div>
+									        <div class="dropdown-menu-option" data-value="4">공장, 창고</div>
+									        <div class="dropdown-menu-option" data-value="5">기타</div>
+									    </div>
+
+									    <input type="hidden" name="c4" value="" class="dropdown-select">
+									</div>
+									<!-- <select name="c4" id="c4" class="form-control select-align-center">
+										<option value="" selected="true">건물 종류</option>
+										<option value="1">아파트, 주상복합, 오피스텔, 빌라</option>
+										<option value="2">근생, 오피스, 연구시설, 관청</option>
+										<option value="3">문화, 종교, 판매, 의료, 운동</option>
+										<option value="4">공장, 창고</option>
+										<option value="5">기타</option>
+									</select> -->
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 m-xs-top-15">
+                                <div class="form-group down_arrow">
+                                	<div class="dropdown">
+									    <div class="dropdown-title">
+																																																																																																			면적(㎡)									    </div>
+
+									    <div class="custom-dropdown-menu">
+									    	<div class="dropdown-menu-option" data-value="">면적(㎡)</div>
+											<div class="dropdown-menu-option" data-value="1">1,000 미만</div>
+											<div class="dropdown-menu-option" data-value="2">~ 5,000 미만</div>
+											<div class="dropdown-menu-option" data-value="3">~ 10,000 미만</div>
+											<div class="dropdown-menu-option" data-value="4">~ 20,000 미만</div>
+											<div class="dropdown-menu-option" data-value="5">~ 40,000 미만</div>
+											<div class="dropdown-menu-option" data-value="6">~ 60,000 미만</div>
+											<div class="dropdown-menu-option" data-value="7">~ 100,000 미만</div>
+											<div class="dropdown-menu-option" data-value="8">~ 150,000 초과</div>
+									    </div>
+
+									    <input type="hidden" name="c7" value="" class="dropdown-select">
+									</div>
+									<!-- <select name="c7" id="c7" class="form-control select-align-center">
+										<option value="" selected="true">면적(㎡)</option>
+										<option value="1">1,000 미만</option>
+										<option value="2">~ 5,000 미만</option>
+										<option value="3">~ 10,000 미만</option>
+										<option value="4">~ 20,000 미만</option>
+										<option value="5">~ 40,000 미만</option>
+										<option value="6">~ 60,000 미만</option>
+										<option value="7">~ 100,000 미만</option>
+										<option value="8">~ 150,000 초과</option>
+									</select> -->
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 m-xs-top-15">
+                                <div class="form-group down_arrow">
+                                	<div class="dropdown">
+									    <div class="dropdown-title">
+																																																																																																																																																																					지역									    </div>
+
+									    <div class="custom-dropdown-menu">
+									    	<div class="dropdown-menu-option" data-value="">지역</div>
+											<div class="dropdown-menu-option" data-value="서울시">서울시</div>
+											<div class="dropdown-menu-option" data-value="경기도">경기도</div>
+											<div class="dropdown-menu-option" data-value="인천시">인천시</div>
+											<div class="dropdown-menu-option" data-value="부산시">부산시</div>
+											<div class="dropdown-menu-option" data-value="대전시">대전시</div>
+											<div class="dropdown-menu-option" data-value="대구시">대구시</div>
+											<div class="dropdown-menu-option" data-value="울산시">울산시</div>
+											<div class="dropdown-menu-option" data-value="세종시">세종시</div>
+											<div class="dropdown-menu-option" data-value="광주시">광주시</div>
+											<div class="dropdown-menu-option" data-value="강원도">강원도</div>
+											<div class="dropdown-menu-option" data-value="충청도">충청도</div>
+											<div class="dropdown-menu-option" data-value="경상도">경상도</div>
+											<div class="dropdown-menu-option" data-value="전라도">전라도</div>
+											<div class="dropdown-menu-option" data-value="제주도">제주도</div>
+									    </div>
+
+									    <input type="hidden" name="c9" value="" class="dropdown-select">
+									</div>
+									<!-- <select name="c9" id="c9" class="form-control select-align-center">
+										<option value="" selected="true">지역</option>
+										<option value="서울시">서울시</option>
+										<option value="경기도">경기도</option>
+										<option value="인천시">인천시</option>
+										<option value="부산시">부산시</option>
+										<option value="대전시">대전시</option>
+										<option value="대구시">대구시</option>
+										<option value="울산시">울산시</option>
+										<option value="세종시">세종시</option>
+										<option value="광주시">광주시</option>
+										<option value="강원도">강원도</option>
+										<option value="충청도">충청도</option>
+										<option value="경상도">경상도</option>
+										<option value="전라도">전라도</option>
+										<option value="제주도">제주도</option>
+									</select> -->
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 m-xs-top-15">
+                                <div class="form-group down_arrow">
+                                	<div class="dropdown">
+									    <div class="dropdown-title">
+																																																																																																																																																																																																																																																													착공년도									    </div>
+
+									    <div class="custom-dropdown-menu">
+									    	<div class="dropdown-menu-option" data-value="">착공년도</div>
+									        <div class="dropdown-menu-option" data-value="1999">1999년</div>
+	                                        <div class="dropdown-menu-option" data-value="2000">2000년</div>
+	                                        <div class="dropdown-menu-option" data-value="2001">2001년</div>
+	                                        <div class="dropdown-menu-option" data-value="2002">2002년</div>
+	                                        <div class="dropdown-menu-option" data-value="2003">2003년</div>
+	                                        <div class="dropdown-menu-option" data-value="2004">2004년</div>
+	                                        <div class="dropdown-menu-option" data-value="2005">2005년</div>
+	                                        <div class="dropdown-menu-option" data-value="2006">2006년</div>
+	                                        <div class="dropdown-menu-option" data-value="2007">2007년</div>
+	                                        <div class="dropdown-menu-option" data-value="2008">2008년</div>
+	                                        <div class="dropdown-menu-option" data-value="2009">2009년</div>
+	                                        <div class="dropdown-menu-option" data-value="2010">2010년</div>
+											<div class="dropdown-menu-option" data-value="2011">2011년</div>
+											<div class="dropdown-menu-option" data-value="2012">2012년</div>
+											<div class="dropdown-menu-option" data-value="2013">2013년</div>
+											<div class="dropdown-menu-option" data-value="2014">2014년</div>
+											<div class="dropdown-menu-option" data-value="2015">2015년</div>
+											<div class="dropdown-menu-option" data-value="2016">2016년</div>
+											<div class="dropdown-menu-option" data-value="2017">2017년</div>
+											<div class="dropdown-menu-option" data-value="2018">2018년</div>
+											<div class="dropdown-menu-option" data-value="2019">2019년</div>
+											<div class="dropdown-menu-option" data-value="2020">2020년</div>
+									    </div>
+
+									    <input type="hidden" name="c11" value="" class="dropdown-select">
+									</div>
+									<!-- <select name="c11" id="c11" class="form-control select-align-center">
+										<option value="" selected="true">착공년도</option>
+										<option value="1999년">1999년</option>
+                                        <option value="2000년">2000년</option>
+                                        <option value="2001년">2001년</option>
+                                        <option value="2002년">2002년</option>
+                                        <option value="2003년">2003년</option>
+                                        <option value="2004년">2004년</option>
+                                        <option value="2005년">2005년</option>
+                                        <option value="2006년">2006년</option>
+                                        <option value="2007년">2007년</option>
+                                        <option value="2008년">2008년</option>
+                                        <option value="2009년">2009년</option>
+                                        <option value="2010년">2010년</option>
+										<option value="2011년">2011년</option>
+										<option value="2012년">2012년</option>
+										<option value="2013년">2013년</option>
+										<option value="2014년">2014년</option>
+										<option value="2015년">2015년</option>
+										<option value="2016년">2016년</option>
+										<option value="2017년">2017년</option>
+										<option value="2018년">2018년</option>
+										<option value="2019년">2019년</option>
+										<option value="2020년">2020년</option>
+									</select> -->
+                                </div>
+                            </div>
+                        </div>
+                       	<div class="row m-top-15">
+                            <div class="col-12 col-md-9 m-xs-top-15">
+                                <!-- Single Input Box Area -->
+                                <div class="form-group">
+                                	<input type="text" name="keyword" id="keyword" value="" class="form-control" placeholder="검색어를 입력해 주십시오.">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 m-xs-top-15">
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-default btn-block">검색</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<section class="shortcodes_content_area section_padding_0_100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 m-top-30">
+                    <div class="single_shortcodes_are">
+                        <div class="single_shortcodes_title m-bottom-30">
+                            <h4>검색결과 : 0건</h4>
+                        </div>
+                        <div class="row m-bottom-15">
+                        	<div class="col-lg-6">
+							</div>
+                        	<div class="col-lg-6 text-right">
+                        		<!-- <button type="button" class="btn btn-mat-green">엑셀다운로드</button> -->
+                        	</div>
+                        </div>
+                        <table class="table classy-table table-bordered table-responsive table-hover gongsabi-table">
+							<thead>
+								<tr class="bg-gray">
+									<!-- <th>번호</th> -->
+									<th>공사명</th>
+									<th>건물종류</th>
+									<th>면적(㎡)</th>
+									<th>공사비(㎡)</th>
+									<th>지역</th>
+									<th>착공년도</th>
+									<th>구분</th>
+									<th>등급</th>
+									<th>상세</th>
+								</tr>
+							</thead>
+							<tbody>
+															</tbody>
+                        </table>
+						                                                                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <footer>
+        <div class="footer_wrapper">
+            <div class="footer_left_area">
+                <ul class="footer_menu">
+                                        <li><a href="/front/company/term">이용약관</a></li>
+                                        <li><a href="/front/company/privacy">개인정보처리방침</a></li>
+                                        <li><a href="/front/company/company4">오시는길</a></li>
+                                    </ul>
+                <table class="footer_info">
+                    <tr>
+                        <th>법인명</th>
+                        <td><b>(주)공사비닷컴</b></td>
+                    </tr>
+                    <tr>
+                        <th>대표이사</th>
+                        <td>현동명</td>
+                    </tr>
+                    <tr>
+                        <th>사업자등록번호</th>
+                        <td>152-87-00466&nbsp;<!-- <a href="/static/file/gongsabi.pdf" class="biz_info" target="_blank"> --><a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1528700466" target="_blank">사업자정보확인</a></td>
+                    </tr>
+                    <tr>
+                        <th>통신판매업</th>
+                        <td>2017-서울송파-2115호</td>
+                    </tr>
+                    <tr>
+                        <th>개인정보책임자</th>
+                        <td>이서진</td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>(05585) 서울특별시 송파구 백제고분로 37길 6 송원빌딩 6층</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="footer_right_area">
+                <ul class="footer_sns">
+                    <!-- <li><a href="https://pf.kakao.com/_sxlUZK" target="_blank">카카오톡</a></li>
+                    <li><a href="#">페이스북</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCiUVqgF9TAgkL36F-w4CGcg" target="_blank">유튜브</a></li>
+                    <li><a href="https://www.instagram.com/gongsabi_" target="_blank">인스타그램</a></li> -->
+                    <li><a href="https://pf.kakao.com/_sxlUZK" target="_blank"><span class="sns sns_kakao"></span></a></li>
+                    <!-- <li><a href="#"><span class="sns sns_facebook"></span></a></li> -->
+                    <li><a href="https://www.youtube.com/channel/UCiUVqgF9TAgkL36F-w4CGcg" target="_blank"><span class="sns sns_youtube"></span></a></li>
+                    <li><a href="https://www.instagram.com/gongsabi_" target="_blank"><span class="sns sns_instagram"></span></a></li>
+                </ul>
+                <table class="footer_contact">
+                    <tr>
+                        <th>채용문의</th>
+                        <td><a href="mailto:sjlee@gongsabi.com">sjlee@gongsabi.com</a></td>
+                    </tr>
+                    <tr>
+                        <th>업무 및 파트너 제휴</th>
+                        <td><a href="mailto:partner@gongsabi.com">partner@gongsabi.com</a></td>
+                    </tr>
+                    <tr>
+                        <th>기타 문의</th>
+                        <td><a href="mailto:cs@gongsabi.com">cs@gongsabi.com</a></td>
+                    </tr>
+                    <tr>
+                        <th>대표전화</th>
+                        <td><a href="tel:02.2202.2258">02.2202.2258</a></td>
+                    </tr>
+                </table>
+                <p>COPYRIGHT (C) <a href="http://www.gongsabi.com" target="_blank">gongsabi.com</a>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 공사비 상세 MODAL -->
+    <div class="modal fade" id="gongsabi_info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gongsabi_info_title">공사비 상세</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <span class="mr-auto mfc">※ 스크랩 내용은 마이페이지 > 공사비검색 > 면적당 공사비 검색 에서 보실 수 있습니다.</span>
+                    <button type="button" class="btn btn-sm btn-outline-success" data-dismiss="modal">닫기</button>
+                                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이용약관 MODAL -->
+    <div class="modal fade" id="agree_info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">이용약관</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <pre style="white-space:pre-wrap;">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 마케팅 활용 수신 동의 MODAL -->
+    <div class="modal fade" id="agree_marketing_info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gongsabi_info_title">마케팅 활용 수신 동의 (선택)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    수집하는 개인정보는 마케팅, 프로모션, 이벤트, 행사관련 정보 안내 및 제반 마케팅활동, 맞춤형 서비스 제공,<br>
+                    맞춤형 쿠폰 제공, 당사 및 제휴사 상품/서비스 안내 및 권유 등을 위해 사용되며,<br>
+                    회사는 해당 업무를 수행하기 위하여 수탁사를 활용할 수 있고, 이에 대해서는 개인정보 처리방침을 통해 확인 가능합니다.<br>
+                    선택 사항에 동의하지 않으셔도 서비스 가입 및 이용이 가능하나,<br>
+                    동의하지 않을 경우 제공 가능한 관련 편의 사항 등 (맞춤형 쿠폰 기타 각종 혜택 등) 이 제한될 수 있습니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 광고성 정보 수신 동의 MODAL -->
+    <div class="modal fade" id="agree_ad_info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gongsabi_info_title">광고성 정보 수신 동의 (선택)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    회사는 귀하의 정보들을 활용하여, 문자메시지, 이메일, 쿠폰 등 다양한 채널을 통해 귀하에게 꼭 필요한<br>
+                    회사 혹은 제휴사의 상품, 서비스를 추천하거나 맞춤형 광고(쿠폰, 이벤트 등) 제공에 대한 알림을 합니다.<br>
+                    회사는 해당 업무를 수행하기 위하여 수탁사를 활용할 수 있고, 이에 대해서는 개인정보 처리방침을 통해 확인 가능합니다.<br>
+                    선택 사항에 동의하지 않으셔도 서비스 가입 및 이용이 가능하나,<br>
+                    동의하지 않을 경우 제공 가능한 관련 편의 사항 등 (맞춤형 쿠폰 기타 각종 혜택 등) 이 제한될 수 있습니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 회원혜택 MODAL -->
+    <div class="modal fade" id="membership_info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="membership_info_wrapper">
+                    <div class="membership_info type1">
+                        <div class="membership_info_title">
+                            <p class="title">무료 회원 가입</p>
+                        </div>
+                        <div class="membership_info_desc">
+                            <p class="desc_lead">"공사비닷컴 <span class="point">온라인 회원</span>이 되시면"</p>
+                            <ul class="desc_list">
+                                <li>면적당 공사비 정보의 샘플 검색</li>
+                                <li>공사 단가 검색의 샘플 검색</li>
+                                <li>골조 면적별 수량 검색의 샘플 검색</li>
+                            </ul>
+                        </div>
+                        <div class="membership_info_button">
+                            <p>해당 서비스를 <span class="point">무료</span>로 제공받으실 수 있습니다.</p>
+                            <a href="/front/mypage/info/info2" class="btn">가입하기</a>
+                        </div>
+                    </div>
+                    <div class="membership_info type2">
+                        <div class="membership_info_title">
+                            <p class="title">유료 회원 가입</p>
+                            <p class="price">연 1,000,000원</p>
+                            <p class="price_small">(VAT 10% 별도)</p>
+                        </div>
+                        <div class="membership_info_desc">
+                            <p class="desc_lead">"공사비닷컴 <span class="point">연간 회원</span>이 되시면"</p>
+                            <ul class="desc_list">
+                                <li>면적당 공사비 검색</li>
+                                <li>공사 단가 검색</li>
+                                <li>골조 면적별 수량 검색</li>
+                                <li>공사기간 산정</li>
+                                <li>간접 공사비 계산</li>
+                            </ul>
+                        </div>
+                        <div class="membership_info_button">
+                            <p><a href="#" class="more">+ 더보기</a></p>
+                            <a href="/front/mypage/info/info2" class="btn">가입하기</a>
+                        </div>
+                    </div>     
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <div class="modal_content not_pay_hp">
+        <div class="modal_body">
+            <span class="modal_header">안내</span>
+            죄송합니다.<br>
+            <strong>현재 휴대폰결제가 불가능합니다.</strong><br>
+            다른 결제 방법을 선택하여<br>
+            이용해주시기 바랍니다.
+        </div>
+        <div class="modal_footer">
+            <div class="modal_agree">
+                <!-- <label for="hide"><input type="checkbox" name="hide" id="hide" value="1"> 다시 보지 않기</label> -->
+            </div>
+            <div class="modal_close">
+                <a href="#" onclick="close_modal(this);">닫기</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal_content_wrapper"></div>
+    
+    <script src="/static/front/slidea-assets/js/gsap/tweenlite.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/gsap/plugins/css.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/gsap/easing/easepack.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/animus/animus.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/animus/presets/default.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/hammer/hammer.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/mousewheel/mousewheel.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/slidea/slidea.js" type="text/javascript"></script>
+    <script src="/static/front/slidea-assets/js/templates/default-slider-active.js" type="text/javascript"></script>
+
+    <script src="/static/front/js/include-all-plugins.js"></script>
+    
+    <!-- DatePicker -->
+    <script src="/static/vendor/air-datepicker/js/datepicker.min.js"></script>    
+    <!-- Include English language -->
+    <script src="/static/vendor/air-datepicker/js/i18n/datepicker.ko.js"></script>
+
+    <script src="/static/front/js/active.js"></script>
+    <script src="/static/js/util.js"></script>
+    <script src="/static/js/gongsabi.js"></script>
+
+    <script>
+    var nowDate = new Date();
+    // 오늘 이후만 선택되도록
+    // nowDate.setDate(nowDate.getDate() + 1);
+
+    var datepicker = $('.air-datepicker')
+    // .prop('readonly', true)
+    .datepicker({
+        language: 'ko',
+        navTitles: {
+            days: '<strong>yyyy</strong>년 MM'
+        },
+        minDate: nowDate,
+        autoClose: true,
+        onSelect: function(fd, d, picker) {}
+    });
+    </script>
+
+    
+</body>
+
+</html>
