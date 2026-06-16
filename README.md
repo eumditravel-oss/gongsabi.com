@@ -50,3 +50,15 @@ PAYMENT_VERIFY=true
 - 관리자 대시보드
 
 기존 서버 DB 없이 새로 시작하는 전제이므로, 공개 콘텐츠와 실제 산식은 운영하면서 계속 채워 넣는 구조입니다.
+
+
+## 2026-06 UI 보강판
+
+- `index.html`: GitHub Pages용 정적 미리보기 홈 화면을 전문 B2B 공사비 플랫폼 형태로 재구성했습니다.
+- `public/static/css/site.css`: 상단 유틸 메뉴, 드롭다운 GNB, 메인 히어로, 빠른 검색, 서비스 카드, 데이터 패널, 교육/공지 영역 스타일을 전면 정리했습니다.
+- `app/Views/layouts/front.php`: PHP 운영 화면의 헤더/푸터와 드롭다운 메뉴 구조를 정리했습니다.
+- `app/Views/home/index.php`: 운영 홈 화면을 정적 미리보기와 같은 정보 구조로 맞췄습니다.
+- `app/Views/data/index.php`: 자료 검색 화면에 탭과 필터 영역을 추가했습니다.
+- `app/Views/report/form.php`: 산정 결과 표시 항목을 보강했습니다.
+
+타 사이트의 로고, 이미지, 고유 문구, DB, HTML/CSS를 복사하지 않고 동일한 서비스 흐름을 가진 독자 UI로 구성했습니다.

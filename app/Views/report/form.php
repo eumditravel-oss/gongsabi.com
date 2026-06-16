@@ -1,7 +1,7 @@
 <section class="page-title">
     <p>REPORT</p>
     <h1><?= e($serviceName) ?></h1>
-    <span>공개 화면 흐름을 기준으로 새 DB에 산정 이력을 저장합니다.</span>
+    <span>연면적, 층수, 구조, 마감, 지역 조건을 기준으로 공사비를 산정합니다.</span>
 </section>
 
 <section class="calculator-layout">
@@ -49,6 +49,7 @@
         <dl>
             <div><dt>단가</dt><dd>-</dd></div>
             <div><dt>직접공사비</dt><dd>-</dd></div>
+            <div><dt>층수 보정</dt><dd>-</dd></div>
             <div><dt>간접비</dt><dd>-</dd></div>
             <div><dt>부가세</dt><dd>-</dd></div>
             <div><dt>총 공사비</dt><dd>-</dd></div>
