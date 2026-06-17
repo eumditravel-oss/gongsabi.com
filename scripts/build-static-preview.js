@@ -108,11 +108,19 @@ function rewriteStaticHtml(raw, route, options = {}) {
   html = html.replace(/<link\s+rel=["']shortcut icon["']\s+href=["']data:image\/svg\+xml[^>]*>/i, '<link rel="shortcut icon" href="/static/img/favicon.ico">');
   html = html.replace(/<base\b[^>]*>\s*/gi, '');
   html = html.replace(/<div\b[^>]*style=["'][^"']*border:\s*1px\s+solid\s+#990000[^"']*["'][\s\S]*?<\/div>/gi, '');
-  html = html.replace(/href=["'][^"']*bootstrap\.min\.css[^"']*["']/gi, 'href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"');
-  html = html.replace(/href=["'][^"']*animate\.css[^"']*["']/gi, 'href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"');
-  html = html.replace(/href=["'][^"']*magnific-popup\.css[^"']*["']/gi, 'href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"');
-  html = html.replace(/src=["'][^"']*bootstrap\.min\.js[^"']*["']/gi, 'src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"');
-  html = html.replace(/src=["'][^"']*magnific-popup\.min\.js[^"']*["']/gi, 'src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"');
+
+  const cdnLinks = options.admin 
+    ? `    <!-- Inject Admin Required CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">`
+    : `    <!-- Inject Front Required CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">`;
+  
+  html = html.replace(/(<\/head>)/i, cdnLinks + '\n$1');
+
   html = html.replace(/["'](?:\/static\/front\/css\/style\.css|public\/static\/front\/css\/style\.css)\?[^"']*/gi, `"${prefix}public/static/front/css/style-pages.css`);
   html = html.replace(/["'](?:\/static\/css\/admin\/style\.css|public\/static\/css\/admin\/style\.css)\?[^"']*/gi, `"${prefix}public/static/css/admin/style-pages.css`);
   html = html.replace(/url\((['"]?)\/static\//gi, `url($1${prefix}public/static/`);
@@ -131,7 +139,12 @@ function rewriteStaticHtml(raw, route, options = {}) {
     html = html.replace(/(<\/head>)/i, '    <link rel="stylesheet" href="' + prefix + 'public/static/css/admin/static-preview.css">\n$1');
     html = html.replace(/<div class="static-admin-note">[\s\S]*?<\/div>/, '<div class="static-admin-note">정적 미리보기입니다. 버튼과 저장 동작은 비활성화되어 있습니다.</div>');
   } else {
-    html = html.replace(/(<\/body>)/i, '    <script src="' + prefix + 'public/static/front/js/static-preview.js"></script>\n$1');
+    const cdnScripts = `
+    <!-- Inject Front Required JS CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>`;
+    html = html.replace(/<script\b[^>]*src=["'][^"']*static-preview\.js["'][^>]*><\/script>\s*/gi, '');
+    html = html.replace(/(<\/body>)/i, cdnScripts + '\n    <script src="' + prefix + 'public/static/front/js/static-preview.js"></script>\n$1');
   }
 
   return html;
