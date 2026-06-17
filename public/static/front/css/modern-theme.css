@@ -1,220 +1,504 @@
-/* 
-  Modern Theme & Layout Architecture (Kakao Enterprise Style)
-  - Color Theme: Modern Blue
-  - Layout: Fullscreen Hero, Asymmetric Grid, Masonry
+/*
+  Modern Theme - Kakao Enterprise Style
+  Blue theme overlay applied via CSS-only (no HTML changes)
+  ─────────────────────────────────────────────
 */
 
+/* ═══ Google Font ═══ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap');
+
 :root {
-  /* Modern Blue Theme Variables */
-  --primary-blue: #1E40AF;
-  --secondary-blue: #3B82F6;
-  --accent-blue: #60A5FA;
-  --dark-bg: #0F172A;
-  --light-bg: #F8FAFC;
-  --text-dark: #1E293B;
-  --text-muted: #64748B;
-  
-  /* Modern Design Elements */
-  --border-radius-lg: 16px;
-  --border-radius-md: 12px;
-  --border-radius-sm: 8px;
-  --soft-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-  --hover-shadow: 0 20px 25px -5px rgba(30, 64, 175, 0.1), 0 8px 10px -6px rgba(30, 64, 175, 0.05);
-  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --primary: #1E40AF;
+  --primary-light: #3B82F6;
+  --primary-dark: #1E3A5F;
+  --accent: #60A5FA;
+  --bg-dark: #0F172A;
+  --bg-light: #F1F5F9;
+  --bg-white: #FFFFFF;
+  --text-primary: #1E293B;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.06);
+  --shadow-hover: 0 12px 32px rgba(30,64,175,0.15);
+  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 1. Global Nav Bar (GNB) - Centered & Clean */
-.main_header_area {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  box-shadow: none !important;
+/* ═══ Global Reset ═══ */
+body {
+  font-family: 'Noto Sans KR', 'Nanum Gothic', sans-serif !important;
+  color: var(--text-primary) !important;
+  background: var(--bg-white) !important;
+  -webkit-font-smoothing: antialiased;
 }
 
-.classy-navbar {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  padding: 0 40px !important;
-  height: 80px !important;
-}
+a { transition: var(--transition) !important; }
 
-.classynav ul {
-  display: flex !important;
-  justify-content: center !important;
-  gap: 30px !important;
-  margin: 0 auto !important;
+/* ═══ 1. GNB Top Bar ═══ */
+.gnb_area {
+  background: var(--bg-dark) !important;
+  padding: 8px 40px !important;
 }
+.gnb_area a,
+.gnb_menu a,
+.translate_menu a {
+  color: rgba(255,255,255,0.85) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+.gnb_area a:hover { color: var(--accent) !important; }
 
-.classynav ul li a {
+/* ═══ 2. Header / Nav ═══ */
+.header_wrapper {
+  background: var(--bg-white) !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+}
+.root_menu > li > a,
+.all_menu_wrapper > li > a {
+  color: var(--text-primary) !important;
   font-weight: 600 !important;
-  color: var(--text-dark) !important;
-  font-size: 16px !important;
-  padding: 10px 15px !important;
-  transition: var(--transition-smooth) !important;
+  font-size: 15px !important;
+  letter-spacing: -0.3px !important;
+}
+.root_menu > li > a:hover,
+.all_menu_wrapper > li > a:hover,
+.root_menu > li.on > a {
+  color: var(--primary) !important;
+}
+.root_menu > li .sub_menu,
+.all_menu_wrapper > li .sub_menu {
+  background: var(--bg-white) !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+}
+.root_menu > li .sub_menu li a,
+.all_menu_wrapper > li .sub_menu li a {
+  color: var(--text-secondary) !important;
+  font-weight: 400 !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+}
+.root_menu > li .sub_menu li a:hover,
+.all_menu_wrapper > li .sub_menu li a:hover {
+  color: var(--primary) !important;
+  background: var(--bg-light) !important;
 }
 
-.classynav ul li a:hover {
-  color: var(--primary-blue) !important;
-}
-
-/* 2. Fullscreen Hero Section (100vh) */
-.welcome_area {
-  height: 100vh !important;
+/* ═══ 3. Hero Slider (Fullscreen-ish) ═══ */
+.main_slider_container {
   width: 100% !important;
-  overflow: hidden;
-  position: relative;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
-
-.welcome-slides, .single-slide {
-  height: 100vh !important;
+.main_slider_wrapper {
+  width: 100% !important;
 }
-
-.single-slide .bg-img {
-  height: 100vh !important;
+.main_slide {
+  min-height: 600px !important;
   background-size: cover !important;
   background-position: center center !important;
+  position: relative !important;
 }
-
-/* Add a dark gradient overlay for text readability */
-.single-slide::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to right, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.3) 100%);
-  z-index: 1;
+.main_slide::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0; left: 0; right: 0; bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(15,23,42,0.75) 0%, rgba(30,64,175,0.4) 100%) !important;
+  z-index: 1 !important;
 }
-
-.slide-content-wrapper {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 10%;
+.main_slide_inner {
+  position: relative !important;
+  z-index: 2 !important;
 }
-
-.default-title {
-  font-size: 64px !important;
+.main_slide_inner h1 {
+  font-size: 52px !important;
   font-weight: 800 !important;
-  line-height: 1.2 !important;
   color: #fff !important;
-  margin-bottom: 20px !important;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  letter-spacing: -1px !important;
 }
-
-.default-description {
-  font-size: 22px !important;
-  color: rgba(255,255,255,0.9) !important;
-  margin-bottom: 40px !important;
-}
-
-/* 3. Asymmetric Grid for Business/Features (Kakao Style) */
-.kakao-asymmetric-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  padding: 50px 0;
-}
-
-/* Create the zig-zag offset */
-.kakao-asymmetric-grid .grid-card:nth-child(even) {
-  transform: translateY(40px);
-}
-
-.kakao-asymmetric-grid .grid-card {
-  background: #fff;
-  border-radius: var(--border-radius-lg);
-  padding: 40px 30px;
-  box-shadow: var(--soft-shadow);
-  transition: var(--transition-smooth);
-  text-align: center;
-  border: 1px solid rgba(0,0,0,0.03);
-}
-
-.kakao-asymmetric-grid .grid-card:hover {
-  transform: translateY(-10px) !important;
-  box-shadow: var(--hover-shadow);
-  border-color: rgba(59, 130, 246, 0.2);
-}
-
-.kakao-asymmetric-grid .grid-card i {
-  font-size: 40px;
-  color: var(--primary-blue);
-  margin-bottom: 20px;
-}
-
-.kakao-asymmetric-grid .grid-card h4 {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 15px;
-}
-
-.kakao-asymmetric-grid .grid-card p {
-  color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-/* 4. Full-width Promotional Callout */
-.kakao-callout-section {
-  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-  padding: 80px 0;
-  border-radius: var(--border-radius-lg);
-  margin: 60px 0;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 20px 40px rgba(30, 64, 175, 0.2);
-}
-
-.kakao-callout-text h3 {
-  color: #fff;
-  font-size: 32px;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.kakao-btn-point {
-  background: #fff;
-  color: var(--primary-blue);
-  padding: 15px 35px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 16px;
-  transition: var(--transition-smooth);
-  display: inline-block;
-  text-transform: uppercase;
-}
-
-.kakao-btn-point:hover {
-  background: var(--dark-bg);
-  color: #fff;
-}
-
-/* 5. Modern Flat Footer */
-.footer_area {
-  background-color: var(--dark-bg) !important;
-  padding: 60px 0 40px !important;
-  color: rgba(255,255,255,0.7) !important;
-}
-
-.footer_area a {
-  color: rgba(255,255,255,0.7) !important;
-}
-
-.footer_area a:hover {
-  color: #fff !important;
-}
-
-/* Button general overrides */
-.btn.btn-primary, .btn.btn-success {
-  background-color: var(--primary-blue) !important;
-  border-color: var(--primary-blue) !important;
-  border-radius: 30px !important;
-  padding: 12px 30px !important;
+.main_slide_inner h2,
+.main_slide_inner h3 {
+  color: rgba(255,255,255,0.95) !important;
   font-weight: 600 !important;
-  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2) !important;
+}
+.main_slide_inner .desc,
+.main_slide_inner .desc2 {
+  color: rgba(255,255,255,0.9) !important;
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+}
+.main_slide_inner .btn {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 30px !important;
+  padding: 14px 32px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  box-shadow: 0 4px 15px rgba(30,64,175,0.3) !important;
+  transition: var(--transition) !important;
+  text-transform: none !important;
+}
+.main_slide_inner .btn:hover {
+  background: var(--primary-light) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(30,64,175,0.4) !important;
+}
+
+/* Slick dots styling */
+.main_slider_wrapper .slick-dots li button:before {
+  color: rgba(255,255,255,0.5) !important;
+  font-size: 10px !important;
+}
+.main_slider_wrapper .slick-dots li.slick-active button:before {
+  color: #fff !important;
+}
+
+/* ═══ 4. Main Wrapper ═══ */
+.main_wrapper {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 30px !important;
+}
+
+/* ═══ 5. Business Title ═══ */
+.main_business_title {
+  font-size: 36px !important;
+  font-weight: 800 !important;
+  color: var(--text-primary) !important;
+  letter-spacing: -1px !important;
+  text-align: center !important;
+  padding: 70px 0 10px !important;
+  margin-bottom: 10px !important;
+  position: relative !important;
+}
+.main_business_title::after {
+  content: '' !important;
+  display: block !important;
+  width: 50px !important;
+  height: 4px !important;
+  background: var(--primary) !important;
+  border-radius: 2px !important;
+  margin: 15px auto 0 !important;
+}
+
+/* ═══ 6. Business Cards - Asymmetric Grid (Kakao Style) ═══ */
+.main_business_wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  padding: 40px 0 60px !important;
+}
+.main_business_section {
+  background: var(--bg-white) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden !important;
+  transition: var(--transition) !important;
+  border: 1px solid #E2E8F0 !important;
+  width: 100% !important;
+  float: none !important;
+}
+/* Kakao-style staggered offset */
+.main_business_section:nth-child(even) {
+  transform: translateY(30px) !important;
+}
+.main_business_section:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--accent) !important;
+}
+.main_business_section:nth-child(even):hover {
+  transform: translateY(22px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--accent) !important;
+}
+.main_section_image {
+  overflow: hidden !important;
+}
+.main_section_image img {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  transition: var(--transition) !important;
+}
+.main_business_section:hover .main_section_image img {
+  transform: scale(1.08) !important;
+}
+.main_section_title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  padding: 20px 20px 8px !important;
+  margin: 0 !important;
+}
+.main_section_sub_title {
+  font-size: 14px !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+  padding: 0 20px 15px !important;
+}
+.main_section_more {
+  padding: 0 20px 20px !important;
+}
+.main_section_more a {
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+.main_section_more a:hover {
+  color: var(--primary-light) !important;
+}
+
+/* ═══ 7. Contact Section - Quick Buttons ═══ */
+.main_contact_wrapper {
+  padding: 40px 0 !important;
+}
+.main_contact_devide_area {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+}
+.main_contact_devide {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  width: 100% !important;
+  float: none !important;
+}
+.main_contact_devide_item {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden !important;
+  transition: var(--transition) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+.main_contact_devide_item:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+.main_contact_devide_item a {
+  font-weight: 700 !important;
+  font-size: 18px !important;
+}
+
+/* ═══ 8. Phone / Customer Center ═══ */
+.main_contact_number_wrapper {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+  margin-top: 30px !important;
+}
+.main_contact_number {
+  background: var(--bg-light) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 24px 28px !important;
+  border: 1px solid #E2E8F0 !important;
+  width: 100% !important;
+  float: none !important;
+}
+.main_contact_number_title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--primary) !important;
+  margin-bottom: 12px !important;
+}
+
+/* ═══ 9. Notice Area ═══ */
+.main_contact_news {
+  background: var(--bg-white) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid #E2E8F0 !important;
+  border-left: 4px solid var(--primary) !important;
+  padding: 24px 28px !important;
+  margin-top: 24px !important;
+}
+.main_contact_news_title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+}
+.main_contact_news_more {
+  color: var(--primary) !important;
+}
+.main_contact_news_table {
+  width: 100% !important;
+}
+.main_contact_news_table th a {
+  color: var(--text-primary) !important;
+  font-weight: 500 !important;
+}
+.main_contact_news_table th a:hover {
+  color: var(--primary) !important;
+}
+.main_contact_news_table td a {
+  color: var(--text-muted) !important;
+}
+
+/* ═══ 10. Callout Banner (between contact and banners) ═══ */
+.main_banner_wrapper {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%) !important;
+  border-radius: var(--radius-lg) !important;
+  margin: 30px 0 !important;
+  padding: 20px 0 !important;
+  box-shadow: 0 8px 30px rgba(30,64,175,0.2) !important;
+}
+.banner_slider_container {
+  border-radius: var(--radius-md) !important;
+  overflow: hidden !important;
+}
+
+/* ═══ 11. Footer - Modern Dark ═══ */
+footer,
+.footer_wrapper {
+  background: var(--bg-dark) !important;
+}
+.footer_menu li a {
+  color: rgba(255,255,255,0.8) !important;
+  font-weight: 500 !important;
+  transition: var(--transition) !important;
+}
+.footer_menu li a:hover {
+  color: var(--accent) !important;
+}
+.footer_info th {
+  color: var(--text-muted) !important;
+}
+.footer_info td,
+.footer_info td b {
+  color: rgba(255,255,255,0.8) !important;
+}
+.footer_contact th {
+  color: var(--text-muted) !important;
+}
+.footer_contact td a {
+  color: rgba(255,255,255,0.8) !important;
+}
+.footer_contact td a:hover {
+  color: var(--accent) !important;
+}
+.footer_right_area p {
+  color: rgba(255,255,255,0.5) !important;
+}
+.footer_right_area p a {
+  color: var(--accent) !important;
+}
+
+/* ═══ 12. Modal Styling ═══ */
+.modal-content {
+  border-radius: var(--radius-md) !important;
+  border: none !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+}
+.modal-header {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-radius: var(--radius-md) var(--radius-md) 0 0 !important;
+  padding: 18px 24px !important;
+}
+.modal-title {
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+.modal-header .close {
+  color: #fff !important;
+  opacity: 0.8 !important;
+}
+.modal-header .close:hover {
+  opacity: 1 !important;
+}
+
+/* ═══ 13. Popup Styling ═══ */
+.modal_content {
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2) !important;
+  overflow: hidden !important;
+}
+.modal_footer {
+  background: var(--bg-light) !important;
+  padding: 12px 20px !important;
+}
+.modal_close a {
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+}
+
+/* ═══ 14. Buttons Global ═══ */
+.btn-primary,
+.btn-success {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  border-radius: 30px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(30,64,175,0.2) !important;
+  transition: var(--transition) !important;
+}
+.btn-primary:hover,
+.btn-success:hover {
+  background: var(--primary-light) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(30,64,175,0.3) !important;
+}
+.btn-outline-success {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  border-radius: 30px !important;
+}
+.btn-outline-success:hover {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+
+/* ═══ 15. Membership Info Modal ═══ */
+.membership_info.type2 .membership_info_title {
+  background: var(--primary) !important;
+}
+.membership_info .btn {
+  background: var(--primary) !important;
+  border-radius: 30px !important;
+}
+.point {
+  color: var(--primary) !important;
+}
+
+/* ═══ 16. Sub-page Content Styling ═══ */
+.sub_content_wrapper {
+  font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+/* ═══ 17. Scroll-to-top / Misc ═══ */
+.mfc { color: var(--primary) !important; }
+
+/* ═══ 18. Responsive ═══ */
+@media (max-width: 1024px) {
+  .main_business_wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .main_business_section:nth-child(even) {
+    transform: translateY(20px) !important;
+  }
+  .main_slide_inner h1 {
+    font-size: 36px !important;
+  }
+}
+@media (max-width: 768px) {
+  .main_business_wrapper {
+    grid-template-columns: 1fr !important;
+  }
+  .main_business_section:nth-child(even) {
+    transform: none !important;
+  }
+  .main_contact_devide_area,
+  .main_contact_devide,
+  .main_contact_number_wrapper {
+    grid-template-columns: 1fr !important;
+  }
+  .main_slide_inner h1 {
+    font-size: 28px !important;
+  }
 }
