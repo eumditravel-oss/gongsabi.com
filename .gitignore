@@ -4,3 +4,12 @@
 /storage/logs/*.log
 .DS_Store
 Thumbs.db
+
+# Legacy site backup/runtime files
+backup_extract_*/
+*.tar.gz
+*.sql
+*.sql.gz
+legacy-site/private/
+legacy-site/public_html/application/logs/*
+!legacy-site/public_html/application/logs/index.html

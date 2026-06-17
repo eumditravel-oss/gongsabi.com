@@ -1,0 +1,66 @@
+t_user_mapping 테이블 INSERT, UPDATE, SELECT model 생성
+
+t_user_mapping 테이블 INSERT, UPDATE, SELECT 컨트롤하는 util 생성
+
+src/apps/svc/scheduler/ApiMemberSchQueServiceImpl.java
+
+	[apiMemberQuePlay]
+
+	* CASE 1 (기존 구매자가 공급자로 가입)
+	ApiMemberQue.QUE_TYPE_NEW 이면
+	구매자(t_member) 정보에서 찾아보고 (adminMemberDao.selectMemberDataByBizNo) 있으면 회원 통합 처리
+		erpCustModel.setIsBuyer = 1
+		erpCustModel.setCrtType = ApiMemberQue.QUE_TYPE_MODIFY
+		erpCustModel.setCustCd = t_member 의 USERNO
+	t_user_mapping 테이블 INSERT ( t_user_mapping INSERT util 사용 )
+		CustCd = t_member 의 USERNO
+		GroupCustCd = t_member 의 USERNO
+		SalesCustCd = t_member 의 USERNO
+		ComCustCd = erpCust.getCustCd() -> 가입 공급자의 CustCd(USERNO)
+		PurCustCd = erpCust.getCustCd() -> 가입 공급자의 CustCd(USERNO)
+
+	* CASE 2 (기존 공급자가 구매자로 가입)
+	ApiMemberQue.QUE_TYPE_NEW 이면
+	공급자(t_dealer) 정보에서 찾아보고 (adminMemberDao.selectDealerDataByBizNo) 있으면 회원 통합 처리
+		t_dealer 의 dealertype 이 1 이면
+			erpCustModel.setIsSeller = 1
+			erpCustModel.setIsSupplier = 0
+		t_dealer 의 dealertype 이 2 이면
+			erpCustModel.setIsSeller = 0
+			erpCustModel.setIsSupplier = 1
+		t_dealer 의 dealertype 이 3 이면
+			erpCustModel.setIsSeller = 1
+			erpCustModel.setIsSupplier = 1
+		erpCustModel.setCrtType = ApiMemberQue.QUE_TYPE_MODIFY
+		erpCustModel.setCustCd = t_dealer 의 USERNO
+	t_user_mapping 테이블 INSERT ( t_user_mapping INSERT util 사용 )
+		t_dealer 의 dealertype 이 1 이면
+			CustCd = t_dealer 의 USERNO
+			GroupCustCd = erpCust.getCustCd() -> 가입 구매자의 CustCd(USERNO)
+			SalesCustCd = erpCust.getCustCd() -> 가입 구매자의 CustCd(USERNO)
+			ComCustCd = t_dealer 의 USERNO
+			PurCustCd = null
+		t_dealer 의 dealertype 이 2 이면
+			CustCd = t_dealer 의 USERNO
+			GroupCustCd = erpCust.getCustCd() -> 가입 구매자의 CustCd(USERNO)
+			SalesCustCd = erpCust.getCustCd() -> 가입 구매자의 CustCd(USERNO)
+			ComCustCd = null
+			PurCustCd = t_dealer 의 USERNO
+		t_dealer 의 dealertype 이 3 이면
+			CustCd = t_dealer 의 USERNO
+			GroupCustCd = erpCust.getCustCd() -> 가입 구매자의 CustCd(USERNO)
+			SalesCustCd = erpCust.getCustCd() -> 가입 구매자의 CustCd(USERNO)
+			ComCustCd = t_dealer 의 USERNO
+			PurCustCd = t_dealer 의 USERNO
+
+
+# 영업-주문
+
+src/apps/svc/scheduler/ScheduleOrderServiceImpl.java
+
+		구매자코드
+		setSalesCustCd(userNo);
+		판매자코드
+		setComCustCd - t_user_mapping 에서 입력받은 dealerNo 를 ComCustCd 필드에서 검색하여 CustCd 구함 / 검색 결과 없으면 dealerNo 그대로 리턴 ( t_user_mapping SELECT util 사용 )
+		공급자코드
+		setPurCustCd - t_user_mapping 에서 입력받은 dealerNo 를 PurCustCd 필드에서 검색하여 CustCd 구함 / 검색 결과 없으면 dealerNo 그대로 리턴 ( t_user_mapping SELECT util 사용 )

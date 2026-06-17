@@ -1,0 +1,257 @@
+/* 메인 */
+.main_container.main {
+	padding-top: 0px;
+}
+
+.main_container.main .main_wrapper {
+	margin-top: 0px;
+}
+
+/* 메인 상단 슬라이더 */
+.main_container.main .main_wrapper .main_slider_wrapper {
+	width: 100%;
+	height: 635px;
+	z-index: 995;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 635px;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 2;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider_title_wrapper {
+	position: absolute;
+	width: 100%;
+	top: 303px;
+	z-index: 996;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider_title_wrapper .main_slider_title {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider_title_wrapper .main_slider_sub_title {
+	width: 1024px;
+	margin: 25px auto;
+	padding-left: 33px;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider_title_wrapper .main_slider_sub_title > span {
+	display: inline-block;
+	height: 36px;
+	border: 1px solid #bdbdbd;
+	padding: 11px;
+	font-size: 14px;
+	line-height: 14px;
+	color: #fff;
+	opacity: 0.6;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider {
+	width: 100%;
+	height: 635px;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider .item {
+	width: 100%;
+	height: 635px;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider_arrow {
+	position: absolute;
+	top: 303px;
+	left: 0;	
+	width: 100%;
+	padding: 0 40px;
+	z-index: 997;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider_arrow .main_slider_arrow_l {
+	float: left;
+}
+
+.main_container.main .main_wrapper .main_slider_wrapper .main_slider_arrow .main_slider_arrow_r {
+	float: right;
+}
+
+/* 메인 채용공고 레이어 */
+.main_container.main .main_wrapper .recruit_layer_wrapper {
+	position: absolute;
+	top: 446px;
+	left: 0;
+	width: 100%;
+	height: 75px;
+	z-index: 3;
+}
+
+.main_container.main .main_wrapper .recruit_layer_wrapper .recruit_layer_area {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.main_container.main .main_wrapper .recruit_layer_wrapper .recruit_layer_area .recruit_layer {
+	float: right;
+	position: relative;
+	margin-right: 1px;
+	width: 308px;
+	height: 75px;
+	background-color: #f48123;
+	color: #dedede;
+	padding: 20px;
+}
+
+.main_container.main .main_wrapper .recruit_layer_wrapper .recruit_layer_area .recruit_layer .recruit_title {
+	font-size: 1.1em;
+	margin-bottom: 5px;
+}
+
+.main_container.main .main_wrapper .recruit_layer_wrapper .recruit_layer_area .recruit_layer .recruit_sub_title > a {
+	color: #dedede;
+	font-size: 0.75em;
+}
+
+.main_container.main .main_wrapper .recruit_layer_wrapper .recruit_layer_area .recruit_layer .recruit_layer_link {
+	display: block;
+	position: absolute;
+	bottom: 27px;
+	right: 27px;
+	width: 60px;
+	height: 7px;
+}
+
+/* 메인 중간 슬라이더 */
+.main_container.main .main_wrapper .main_front_slider_container {
+	position: absolute;
+	top: 551px;
+	left: 0;
+	width: 100%;
+	height: 300px;
+	z-index: 3;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider {
+	width: 1024px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item {
+	float: left;
+	width: 310px;
+	height: 436px;
+	border: 1px solid transparent;
+}	
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item:hover {
+	border: 1px solid #f48123;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_image {
+	width: 310px;
+	height: 220px;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_image > a > img {
+	width: 308px;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_text {
+	padding: 22px;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_text > .slider_title {
+	height: 45px;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 22px;
+	letter-spacing: -1.26px;
+	color: #4e4e4e;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_text > .slider_desc {
+	height: 80px;
+	margin-top: 15px;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -1.3px;
+	color: #767676;	
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_text > .slider_link {
+	margin-top: 21px;
+	font-size: 12px;
+	line-height: 19px;
+	letter-spacing: -1.08px;
+	color: #505050;		
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_text > .slider_link > a {
+	position: relative;
+}
+
+.main_container.main .main_wrapper .main_front_slider_container .main_front_slider div.item > .slider_text > .slider_link > a::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 20px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background-color: #b6b6b6;
+}
+
+.main_container.main .main_wrapper .main_front_slider_arrow_wrapper {
+	position: absolute;
+	top: -42px;
+	width: 100%;  
+	z-index: 995;
+}
+
+.main_container.main .main_wrapper .main_front_slider_arrow_wrapper .main_front_slider_arrow {
+	position: relative;
+	width: 1078px;	
+	margin: 0 auto;
+}
+
+.main_container.main .main_wrapper .main_front_slider_arrow_wrapper .main_front_slider_arrow > li {
+	width: 72px;
+	height: 41px;
+	position: absolute;
+	top: 191px;
+}
+
+.main_container.main .main_wrapper .main_front_slider_arrow_wrapper .main_front_slider_arrow .main_front_slider_arrow_l {
+	left: 0;
+}
+
+.main_container.main .main_wrapper .main_front_slider_arrow_wrapper .main_front_slider_arrow .main_front_slider_arrow_r {
+	right: 0;
+}
+
+/* 메인 하단 배너 영역 */
+.main_container.main .main_wrapper .main_banner_wrapper {
+	width: 100%;
+}
+
+.main_container.main .main_wrapper .main_banner {
+	width: 1024px;
+	margin: 372px auto 37px;
+	overflow: hidden;
+}
+
+.main_container.main .main_wrapper .main_banner > div {
+	float: left;
+}
+
+.main_container.main .main_wrapper .main_banner > div.banner1 {
+	margin-right: 14px;
+}
