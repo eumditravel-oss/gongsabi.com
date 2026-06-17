@@ -1,0 +1,220 @@
+/* 
+  Modern Theme & Layout Architecture (Kakao Enterprise Style)
+  - Color Theme: Modern Blue
+  - Layout: Fullscreen Hero, Asymmetric Grid, Masonry
+*/
+
+:root {
+  /* Modern Blue Theme Variables */
+  --primary-blue: #1E40AF;
+  --secondary-blue: #3B82F6;
+  --accent-blue: #60A5FA;
+  --dark-bg: #0F172A;
+  --light-bg: #F8FAFC;
+  --text-dark: #1E293B;
+  --text-muted: #64748B;
+  
+  /* Modern Design Elements */
+  --border-radius-lg: 16px;
+  --border-radius-md: 12px;
+  --border-radius-sm: 8px;
+  --soft-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  --hover-shadow: 0 20px 25px -5px rgba(30, 64, 175, 0.1), 0 8px 10px -6px rgba(30, 64, 175, 0.05);
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. Global Nav Bar (GNB) - Centered & Clean */
+.main_header_area {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  box-shadow: none !important;
+}
+
+.classy-navbar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 40px !important;
+  height: 80px !important;
+}
+
+.classynav ul {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 30px !important;
+  margin: 0 auto !important;
+}
+
+.classynav ul li a {
+  font-weight: 600 !important;
+  color: var(--text-dark) !important;
+  font-size: 16px !important;
+  padding: 10px 15px !important;
+  transition: var(--transition-smooth) !important;
+}
+
+.classynav ul li a:hover {
+  color: var(--primary-blue) !important;
+}
+
+/* 2. Fullscreen Hero Section (100vh) */
+.welcome_area {
+  height: 100vh !important;
+  width: 100% !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.welcome-slides, .single-slide {
+  height: 100vh !important;
+}
+
+.single-slide .bg-img {
+  height: 100vh !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+/* Add a dark gradient overlay for text readability */
+.single-slide::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to right, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.3) 100%);
+  z-index: 1;
+}
+
+.slide-content-wrapper {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+}
+
+.default-title {
+  font-size: 64px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  color: #fff !important;
+  margin-bottom: 20px !important;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.default-description {
+  font-size: 22px !important;
+  color: rgba(255,255,255,0.9) !important;
+  margin-bottom: 40px !important;
+}
+
+/* 3. Asymmetric Grid for Business/Features (Kakao Style) */
+.kakao-asymmetric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 50px 0;
+}
+
+/* Create the zig-zag offset */
+.kakao-asymmetric-grid .grid-card:nth-child(even) {
+  transform: translateY(40px);
+}
+
+.kakao-asymmetric-grid .grid-card {
+  background: #fff;
+  border-radius: var(--border-radius-lg);
+  padding: 40px 30px;
+  box-shadow: var(--soft-shadow);
+  transition: var(--transition-smooth);
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.kakao-asymmetric-grid .grid-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: var(--hover-shadow);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.kakao-asymmetric-grid .grid-card i {
+  font-size: 40px;
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+}
+
+.kakao-asymmetric-grid .grid-card h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.kakao-asymmetric-grid .grid-card p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 4. Full-width Promotional Callout */
+.kakao-callout-section {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+  padding: 80px 0;
+  border-radius: var(--border-radius-lg);
+  margin: 60px 0;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(30, 64, 175, 0.2);
+}
+
+.kakao-callout-text h3 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.kakao-btn-point {
+  background: #fff;
+  color: var(--primary-blue);
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: var(--transition-smooth);
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.kakao-btn-point:hover {
+  background: var(--dark-bg);
+  color: #fff;
+}
+
+/* 5. Modern Flat Footer */
+.footer_area {
+  background-color: var(--dark-bg) !important;
+  padding: 60px 0 40px !important;
+  color: rgba(255,255,255,0.7) !important;
+}
+
+.footer_area a {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+.footer_area a:hover {
+  color: #fff !important;
+}
+
+/* Button general overrides */
+.btn.btn-primary, .btn.btn-success {
+  background-color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+  border-radius: 30px !important;
+  padding: 12px 30px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2) !important;
+}
