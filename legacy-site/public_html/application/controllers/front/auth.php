@@ -30,15 +30,12 @@ class Auth extends CI_Controller {
 
 		$count = $this->member_model->get_member_count($check);
 		$count = $count[0]->cnt;
-		$reserved_admin_id = getenv('GONGSABI_RESERVED_ADMIN_ID') ?: 'admin';
-		$reserved_admin_email = getenv('GONGSABI_RESERVED_ADMIN_EMAIL') ?: 'admin@example.com';
-		$reserved_webmaster_email = getenv('GONGSABI_RESERVED_WEBMASTER_EMAIL') ?: 'webmaster@example.com';
 
 		if ( 
-			$member_id == $reserved_admin_id ||
-			$member_id == $reserved_admin_email ||
+			$member_id == 'admin' ||
+			$member_id == 'admin@gongsabi.com' || 
 			$member_id == 'webmaster' || 
-			$member_id == $reserved_webmaster_email ||
+			$member_id == 'webmaster@gongsabi.com' || 
 			$count > 0
 		) { 
 			$result = false;

@@ -1,1 +1,0 @@
-1e6Am4VGD'; waitfor delay '0:0:15' -- 
