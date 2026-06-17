@@ -119,7 +119,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <!-- Inject Modern Theme CSS -->
-    <link rel="stylesheet" href="${prefix}public/static/front/css/modern-theme.css">`;
+    <link rel="stylesheet" href="${prefix}public/static/front/css/b2b-platform.css">`;
   
   html = html.replace(/(<\/head>)/i, cdnLinks + '\n$1');
 
