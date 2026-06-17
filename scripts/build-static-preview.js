@@ -104,9 +104,9 @@ function rewriteStaticHtml(raw, route, options = {}) {
   html = html.replace(/<div\b[^>]*id=["']its-image-crop-container["'][^>]*><\/div>/gi, '');
   html = html.replace(/<div\b[^>]*id=["']codex-agent-overlay-root["'][^>]*><\/div>/gi, '');
   html = html.replace(/<script\b[^>]*src=["']chrome-extension:[^>]*><\/script>/gi, '');
+  html = html.replace(/<div\b[^>]*class=["'][^"']*\bimp-dialog\b[^"']*["'][\s\S]*?<div\b[^>]*class=["'][^"']*\bimp-header\b[^"']*["'][\s\S]*?<\/div>\s*<\/div>/gi, '');
   html = html.replace(/<link\s+rel=["']shortcut icon["']\s+href=["']data:image\/svg\+xml[^>]*>/i, '<link rel="shortcut icon" href="/static/img/favicon.ico">');
   html = html.replace(/<base\b[^>]*>\s*/gi, '');
-  html = html.replace(/(<head[^>]*>)/i, `$1\n    <base href="${prefix}">`);
   html = html.replace(/["'](?:\/static\/front\/css\/style\.css|public\/static\/front\/css\/style\.css)\?[^"']*/gi, `"${prefix}public/static/front/css/style-pages.css`);
   html = html.replace(/["'](?:\/static\/css\/admin\/style\.css|public\/static\/css\/admin\/style\.css)\?[^"']*/gi, `"${prefix}public/static/css/admin/style-pages.css`);
   html = html.replace(/url\((['"]?)\/static\//gi, `url($1${prefix}public/static/`);
@@ -123,6 +123,9 @@ function rewriteStaticHtml(raw, route, options = {}) {
   if (options.admin) {
     html = html.replace(/(<body\b[^>]*>)/i, '$1\n    <div class="static-admin-note">정적 미리보기입니다. 버튼과 저장 동작은 비활성화되어 있습니다.</div>');
     html = html.replace(/(<\/head>)/i, '    <link rel="stylesheet" href="' + prefix + 'public/static/css/admin/static-preview.css">\n$1');
+    html = html.replace(/<div class="static-admin-note">[\s\S]*?<\/div>/, '<div class="static-admin-note">정적 미리보기입니다. 버튼과 저장 동작은 비활성화되어 있습니다.</div>');
+  } else {
+    html = html.replace(/(<\/body>)/i, '    <script src="' + prefix + 'public/static/front/js/static-preview.js"></script>\n$1');
   }
 
   return html;
@@ -138,7 +141,14 @@ function buildCssCopies() {
   const frontStyle = path.join(root, 'public', 'static', 'front', 'css', 'style.css');
   const frontPagesStyle = path.join(root, 'public', 'static', 'front', 'css', 'style-pages.css');
   if (fs.existsSync(frontStyle)) {
-    const css = fs.readFileSync(frontStyle, 'utf8').replace(/\/static\//g, '../../');
+    const previewFixes = [
+      '',
+      '/* Static preview fixes */',
+      '.modal_content .modal_footer > div.modal_close{text-align:right!important;}',
+      '.modal_content .modal_footer > div.modal_close a{display:inline-flex!important;align-items:center;justify-content:center;min-width:58px;height:28px;margin-top:6px;border:1px solid rgba(255,255,255,.85);border-radius:2px;background:rgba(255,255,255,.1);color:#fff!important;font-size:14px!important;line-height:26px!important;text-indent:0!important;text-decoration:none!important;}',
+      '.modal_content .modal_footer > div.modal_close a:hover{background:rgba(255,255,255,.2);}',
+    ].join('\n');
+    const css = fs.readFileSync(frontStyle, 'utf8').replace(/\/static\//g, '../../') + previewFixes;
     fs.writeFileSync(frontPagesStyle, tidyText(css), 'utf8');
   }
 
@@ -157,6 +167,30 @@ function buildCssCopies() {
     'a[href="#"]{cursor:default}',
     '.btn[href="#"]{pointer-events:none}',
   ].join('\n')), 'utf8');
+
+  const frontPreviewJs = path.join(root, 'public', 'static', 'front', 'js', 'static-preview.js');
+  ensureDir(path.dirname(frontPreviewJs));
+  fs.writeFileSync(frontPreviewJs, tidyText(`(function () {
+  function hideModal(closeLink) {
+    var modal = closeLink && closeLink.closest ? closeLink.closest('.modal_content') : null;
+    if (modal) modal.style.display = 'none';
+    var wrapper = document.querySelector('.modal_content_wrapper');
+    if (wrapper) wrapper.style.display = 'none';
+  }
+
+  window.close_modal = function (el) {
+    hideModal(el);
+    return false;
+  };
+
+  document.addEventListener('click', function (event) {
+    var closeLink = event.target.closest ? event.target.closest('.modal_close a') : null;
+    if (!closeLink) return;
+    event.preventDefault();
+    hideModal(closeLink);
+  });
+}());
+`), 'utf8');
 }
 
 function buildPublicPages() {
@@ -181,11 +215,10 @@ function buildAdminPages() {
     writeRoute(route, rewriteStaticHtml(raw, route, { admin: true }));
   }
 
-  const dashboard = outputPathForRoute('admin/dashboard');
-  const adminIndex = path.join(root, 'admin', 'index.html');
-  if (fs.existsSync(dashboard)) {
-    ensureDir(path.dirname(adminIndex));
-    fs.copyFileSync(dashboard, adminIndex);
+  const dashboardSnapshot = path.join(adminSnapshotDir, 'admin__dashboard.html');
+  if (fs.existsSync(dashboardSnapshot)) {
+    const raw = fs.readFileSync(dashboardSnapshot, 'utf8');
+    writeRoute('admin', rewriteStaticHtml(raw, 'admin', { admin: true }));
   }
 }
 
