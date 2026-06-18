@@ -23,6 +23,8 @@
     <!-- Legacy JS -->
     <script src="public/static/front/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="./public/static/front/js/static-preview.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script>
         var IMP = window.IMP;
@@ -33,28 +35,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
-    <!-- Inject Front CDNs and B2B Platform CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
-    <!-- Inject Front CDNs and B2B Platform CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
-    <!-- Inject Front CDNs and B2B Platform CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
 </head>
 
-<body>
+<body class="kor main-page">
     <!-- ==========================================
          1. MEGA MENU HEADER
     =========================================== -->
-    <header class="b2b-header">
+    <header class="b2b-header b2b-transparent-header">
         <div class="b2b-header-container">
             <a href="index.html" class="b2b-logo">
                 <img src="public/static/img/logo.png" alt="공사비닷컴 로고">
@@ -125,53 +112,49 @@
         </div>
     </header>
 
-    <!-- ==========================================
-         2. LARGE HERO SLIDER (Bootstrap Carousel)
-    =========================================== -->
-    <div id="mainHeroSlider" class="carousel slide b2b-hero-carousel" data-ride="carousel" data-interval="5000">
-        <ol class="carousel-indicators">
-            <li data-target="#mainHeroSlider" data-slide-to="0" class="active"></li>
-            <li data-target="#mainHeroSlider" data-slide-to="1"></li>
-            <li data-target="#mainHeroSlider" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <!-- Slide 1: 공사비 검색 -->
-            <div class="carousel-item active" style="background-image: url('public/static/img/slider13.jpg');">
-                <div class="b2b-slide-content">
-                    <span class="b2b-slide-label">Data Platform</span>
-                    <h1 class="b2b-slide-title">대한민국 건설 공사비를<br>데이터로 확인하다</h1>
-                    <p class="b2b-slide-desc">건물종류, 지역, 면적, 착공연도 기준으로 실시간 공사비를 검색하고 적산·수량산출에 필요한 실무 정보를 확인하세요.</p>
-                    <a href="front/data/gongsabi/" class="b2b-btn-primary"><i class="fas fa-search" style="margin-right:8px;"></i> 공사비 검색하기</a>
+    <!-- MAIN HERO SLIDER (Fullscreen & Transparent Header overlap) -->
+    <section class="b2b-hero-slider">
+        <div id="b2bHeroCarousel" class="carousel slide b2b-hero-carousel" data-ride="carousel" data-interval="5000">
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/bg-img/bg-7.jpg');"></div>
+                    <div class="b2b-hero-overlay"></div>
+                    <div class="b2b-hero-content">
+                        <span class="b2b-slide-label">Data Platform</span>
+                        <h2 class="b2b-slide-title" style="color:#fff;">건설 실무의 새로운 기준,<br>공사비 데이터로 만듭니다.</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.8);">건물 종류별, 지역별, 연도별 공사비 통계부터<br>세부 공종별 단가까지 한곳에서 확인하세요.</p>
+                        <div class="b2b-slide-actions">
+                            <a href="./front/data/gongsabi/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">면적당 공사비 검색 <i class="fas fa-arrow-right ml-2"></i></a>
+                            <a href="./front/report/geonchuk/" class="b2b-btn-outline" style="padding:16px 32px; font-size:16px; border-radius:30px; border-color:rgba(255,255,255,0.5); color:#fff; margin-left:15px;">내역서 바로 작성</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/bg-img/bg-6.jpg');"></div>
+                    <div class="b2b-hero-overlay"></div>
+                    <div class="b2b-hero-content">
+                        <span class="b2b-slide-label">Education</span>
+                        <h2 class="b2b-slide-title" style="color:#fff;">전문가 노하우가 담긴<br>실무 밀착 공사비 교육</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.8);">현장에서 바로 적용 가능한 건축 견적 및<br>내역서 작성법을 동영상과 세미나로 만나보세요.</p>
+                        <div class="b2b-slide-actions">
+                            <a href="./front/education/youtube/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">동영상 강의 보기 <i class="fas fa-play-circle ml-2"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- Slide 2: 내역서 작성 -->
-            <div class="carousel-item" style="background-image: url('public/static/img/main_section2.jpg');">
-                <div class="b2b-slide-content">
-                    <span class="b2b-slide-label">Smart Solution</span>
-                    <h1 class="b2b-slide-title">실무에 바로 쓰는<br>내역서 자동 작성</h1>
-                    <p class="b2b-slide-desc">복잡한 수량 산출과 간접비 계산의 어려움을 덜어냅니다.<br>적산, 수량산출, 내역서 작성 흐름을 한 곳에서 해결하세요.</p>
-                    <a href="front/report/geonchuk/" class="b2b-btn-primary"><i class="fas fa-file-invoice" style="margin-right:8px;"></i> 내역서 작성하기</a>
-                </div>
-            </div>
-            <!-- Slide 3: 공사비 교육 -->
-            <div class="carousel-item" style="background-image: url('public/static/img/slider15.jpg');">
-                <div class="b2b-slide-content">
-                    <span class="b2b-slide-label">Expert Education</span>
-                    <h1 class="b2b-slide-title">현장 기술자를 위한<br>공사비 실무 교육</h1>
-                    <p class="b2b-slide-desc">현동명 대표의 노하우가 담긴 프리미엄 강의.<br>공사비 기초부터 설계변경, 수량산출까지 체계적으로 학습하세요.</p>
-                    <a href="front/education/" class="b2b-btn-secondary"><i class="fas fa-laptop-code" style="margin-right:8px;"></i> 교육 콘텐츠 보기</a>
-                </div>
-            </div>
+
+            <a class="carousel-control-prev" href="#b2bHeroCarousel" role="button" data-slide="prev" style="width:5%;">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="width:40px;height:40px;background-color:rgba(0,0,0,0.5);border-radius:50%;background-size:20px;"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#b2bHeroCarousel" role="button" data-slide="next" style="width:5%;">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="width:40px;height:40px;background-color:rgba(0,0,0,0.5);border-radius:50%;background-size:20px;"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#mainHeroSlider" role="button" data-slide="prev" style="width: 5%;">
-            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#mainHeroSlider" role="button" data-slide="next" style="width: 5%;">
-            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+    </section>
 
     <!-- ==========================================
          3. QUICK SEARCH PANEL (Floating under slider)
