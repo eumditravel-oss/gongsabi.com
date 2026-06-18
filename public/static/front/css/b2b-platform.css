@@ -618,7 +618,7 @@ table.table, .gongsabi-table, .company_ceo_table {
 ========================================= */
 
 /* 1. Global Header & Hero Blocks */
-.classy-hero-blocks, .b2b-page-header {
+.b2b-page-header {
     background: linear-gradient(135deg, var(--b2b-primary) 0%, #1e3a8a 100%) !important;
     position: relative;
     padding: 60px 0 !important;
@@ -626,16 +626,28 @@ table.table, .gongsabi-table, .company_ceo_table {
     border-bottom: none !important;
     box-shadow: 0 10px 30px rgba(13, 31, 88, 0.1);
 }
+.classy-hero-blocks {
+    background: transparent !important;
+    padding: 20px 0 50px !important;
+    color: inherit !important;
+}
 .classy-hero-blocks .background-overlay-white::before {
     display: none !important; /* Remove old white overlay */
 }
-.classy-hero-blocks h2, .b2b-page-header h1, .b2b-page-header .b2b-page-title {
+.b2b-page-header h1, .b2b-page-header .b2b-page-title {
     color: #fff !important;
     font-weight: 800;
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-.classy-hero-blocks p, .b2b-page-header .b2b-breadcrumb {
+.classy-hero-blocks h2 {
+    color: var(--b2b-text-dark) !important;
+    font-weight: 800;
+}
+.b2b-page-header .b2b-breadcrumb {
     color: rgba(255, 255, 255, 0.8) !important;
+}
+.classy-hero-blocks p {
+    color: #475569 !important;
 }
 .b2b-page-header .b2b-breadcrumb {
     background: rgba(255, 255, 255, 0.1);
@@ -716,12 +728,14 @@ table.table, .gongsabi-table, .company_ceo_table {
 
 /* 4. Alert & Info Text Box */
 .hero-block-content p.fsxs {
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 4px solid var(--b2b-accent-yellow);
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-left: 4px solid var(--b2b-accent-yellow) !important;
     padding: 15px;
     border-radius: 0 8px 8px 0;
     display: inline-block;
     text-align: left;
     margin-top: 30px !important;
     line-height: 1.6;
+    color: #475569 !important;
 }
