@@ -559,7 +559,8 @@
         AOS.init({
             duration: 800,
             easing: 'ease-in-out',
-            once: false, /* 스크롤 올리고 내릴 때마다 반복 작동 */
+            once: false, /* 스크롤 할 때마다 반복 작동 */
+            mirror: true, /* 스크롤을 올릴 때(역방향) 화면 위에서 진입하는 요소도 애니메이션 재실행 */
             offset: 100
         });
     </script>
