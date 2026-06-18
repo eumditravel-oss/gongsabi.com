@@ -230,8 +230,8 @@ function rewriteStaticHtml(raw, route, options = {}) {
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
     // Remove legacy headers/footers via Regex
-    html = html.replace(/<header>\\s*<div class="gnb_area">[\\s\\S]*?<\\/ul>\\s*<\\/div>\\s*<\\/header>/, '');
-    html = html.replace(/<footer>\\s*<div class="footer_wrapper">[\\s\\S]*?<\\/footer>/, '');
+    html = html.replace(/<header>\s*<div class="gnb_area">[\s\S]*?<\/ul>\s*<\/div>\s*<\/header>/, '');
+    html = html.replace(/<footer>\s*<div class="footer_wrapper">[\s\S]*?<\/footer>/, '');
 
     // Inject B2B Header
     html = html.replace(/(<body\b[^>]*>)/i, '$1\n' + getB2BHeader(prefix));
@@ -249,8 +249,8 @@ function rewriteStaticHtml(raw, route, options = {}) {
     // Inject custom UI for specific routes
     if (route === 'front/data/gongsabi') {
       // Remove old sub header, hero, search wrapper and table for gongsabi data page
-      html = html.replace(/<div class="sub_header_area">[\\s\\S]*?<\\/script>/, '');
-      html = html.replace(/<div class="classy-hero-blocks[\\s\\S]*?<\\/section>/, '');
+      html = html.replace(/<div class="sub_header_area">[\s\S]*?<\/script>/, '');
+      html = html.replace(/<div class="classy-hero-blocks[\s\S]*?<\/section>/, '');
       
       const b2bSearchCard = \`
     <!-- B2B Page Header -->
