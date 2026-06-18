@@ -243,14 +243,19 @@ function rewriteStaticHtml(raw, route, options = {}) {
     if(route.includes('community/')) pageTitle = '공사비 커뮤니티';
     if(route.includes('auth/') || route.includes('customer/')) pageTitle = '고객센터 / 회원서비스';
 
-    // Remove old wrappers to clean up space and prevent CSS conflicts
-    html = html.replace(/<div\b[^>]*class=["']sub_title_wrapper["'][\s\S]*?<\/div>/i, '');
-    // Remove old wrappers to clean up space and prevent CSS conflicts
-    html = html.replace(/<div\b[^>]*class=["']sub_title_wrapper["'][\s\S]*?<\/div>/i, '');
-    html = html.replace(/<div class="sub_header_wrapper">[\s\S]*?<\/script>/i, '');
-    // Safely hide legacy hero blocks instead of deleting them to prevent greedy matching from eating the main content below
-    html = html.replace(/<section\b[^>]*class=["'][^"']*classy-hero[^"']*["'][\s\S]*?<\/section>/i, '');
-    html = html.replace(/(<div\b[^>]*class=["'][^"']*classy-hero-blocks[^"']*["'])/gi, '$1 style="display:none !important;"');
+    // The Ultimate Safe Method: Inject CSS to hide all legacy headers and hero sections instead of ripping out HTML tags.
+    const hideLegacyCSS = `
+      <style>
+        .sub_title_wrapper, 
+        .sub_header_wrapper, 
+        .sub_header_area, 
+        .classy-hero-area, 
+        .classy-hero-blocks {
+            display: none !important;
+        }
+      </style>
+    `;
+    html = html.replace(/(<head\b[^>]*>)/i, '$1\n' + hideLegacyCSS);
     
     let customUI = '';
     // Inject custom UI for specific routes

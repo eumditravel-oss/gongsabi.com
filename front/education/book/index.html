@@ -2,6 +2,17 @@
 <html lang="ko">
 
 <head>
+
+      <style>
+        .sub_title_wrapper,
+        .sub_header_wrapper,
+        .sub_header_area,
+        .classy-hero-area,
+        .classy-hero-blocks {
+            display: none !important;
+        }
+      </style>
+
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -156,7 +167,51 @@
             $(this).removeClass('on').find('.sub_menu:visible').hide();
         });
     });
-    </script><div class="education_book_wrapper">
+    </script><div class="sub_header_wrapper">
+    <div class="sub_header_area">
+        <span class="home"><a href="../../../index.html"><i class="fa fa-home"></i></a></span>
+        <span class="dep1">
+            <button class="dep1_btn">공사비 교육</button>
+            <ul class="dep1_list">
+                                <li class=""><a href="../../../front/company/">회사소개</a></li>
+                                <li class=""><a href="../../../front/data/">공사비 검색</a></li>
+                                <li class=""><a href="../../../front/report/">내역서 작성</a></li>
+                                <li class="on"><a href="../../../front/education/">공사비 교육</a></li>
+                                <li class=""><a href="../../../front/community/">건설 장터</a></li>
+                                <li class=""><a href="../../../front/mypage/">마이페이지</a></li>
+                                <li class=""><a href="../../../front/customer/">고객센터</a></li>
+                            </ul>
+        </span>
+        <span class="dep2">
+            <button class="dep2_btn">교재 구매</button>
+            <ul class="dep2_list">
+                                <li class=""><a href="../../../front/education/youtube/">동영상 교육</a></li>
+                                <li class="on"><a href="../../../front/education/book/">교재 구매</a></li>
+                                <li class=""><a href="../../../front/education/lecture/">강의신청</a></li>
+                            </ul>
+        </span>
+    </div>
+</div>
+<script>
+$(function() {
+    $('.dep1 .dep1_btn').on('click', function() {
+        if ( $('.dep1_list').is(':visible') )
+            $('.dep1_list').hide();
+        else {
+            $('.dep1_list').show();
+            $('.dep2_list').hide();
+        }
+    });
+    $('.dep2 .dep2_btn').on('click', function() {
+        if ( $('.dep2_list').is(':visible') )
+            $('.dep2_list').hide();
+        else {
+            $('.dep2_list').show();
+            $('.dep1_list').hide();
+        }
+    });
+});
+</script><div class="education_book_wrapper">
 
     <div class="book_title">
         교재 구매
