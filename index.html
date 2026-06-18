@@ -125,6 +125,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body class="kor main-page">
@@ -227,7 +228,7 @@
 
                 <!-- Slide 1: CONCOST -->
                 <div class="carousel-item active">
-                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/hero-slide-01.jpg'); background-position: center center;"></div>
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/hero-slide-01.jpg'); background-position: center center; background-attachment: fixed;"></div>
                     <!-- 그라데이션을 화면 55%까지 완전히 덮어서 텍스트를 숨기고 오른쪽으로 갈수록 아주 부드럽게 자연스럽게 투명해지도록 교정 -->
                     <div class="b2b-hero-overlay" style="background: linear-gradient(90deg, rgba(15,23,42,1) 0%, rgba(15,23,42,1) 55%, rgba(15,23,42,0.4) 75%, rgba(15,23,42,0) 100%);"></div>
                     <div class="b2b-hero-content" style="text-align: left; max-width: 1400px; margin: 0 auto; padding-left: 40px; justify-content: center; display: flex; flex-direction: column;">
@@ -384,36 +385,36 @@
          4. 주요 서비스 섹션 (Service Cards)
     =========================================== -->
     <section class="b2b-section b2b-reveal">
-        <div class="b2b-section-header">
+        <div class="b2b-section-header" data-aos="fade-up">
             <h2>전문가를 위한 핵심 솔루션</h2>
             <p>건설 적산 및 원가 관리의 모든 프로세스를 공사비닷컴 하나로 해결합니다.</p>
         </div>
         <div class="b2b-service-grid">
-            <div class="b2b-service-card">
+            <div class="b2b-service-card" data-aos="fade-up" data-aos-delay="0">
                 <div class="b2b-service-icon"><i class="fas fa-search-dollar"></i></div>
                 <h4>공사비 검색</h4>
                 <p>건물 종류별, 면적별, 연도별 상세 공사비 단가와 내역 즉시 확인</p>
                 <a href="front/data/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
             </div>
-            <div class="b2b-service-card">
+            <div class="b2b-service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="b2b-service-icon"><i class="fas fa-file-invoice"></i></div>
                 <h4>내역서 작성</h4>
                 <p>복잡한 건축/골조 내역서 및 공사기간 산정을 빠르고 정확하게 산출</p>
                 <a href="front/report/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
             </div>
-            <div class="b2b-service-card">
+            <div class="b2b-service-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="b2b-service-icon"><i class="fas fa-laptop-code"></i></div>
                 <h4>공사비 교육</h4>
                 <p>현동명 대표 직강 및 건축 적산, 수량산출 실무 커리큘럼 제공</p>
                 <a href="front/education/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
             </div>
-            <div class="b2b-service-card">
+            <div class="b2b-service-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="b2b-service-icon"><i class="fas fa-users"></i></div>
                 <h4>커뮤니티</h4>
                 <p>현장 자재 거래, 구인구직, 공사비 견적 의뢰 및 노하우 공유 공간</p>
                 <a href="front/community/market/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
             </div>
-            <div class="b2b-service-card">
+            <div class="b2b-service-card" data-aos="fade-up" data-aos-delay="400">
                 <div class="b2b-service-icon"><i class="fas fa-headset"></i></div>
                 <h4>고객센터</h4>
                 <p>최신 공지사항, 자주 묻는 질문(Q&A), 사이트 이용 가이드 안내</p>
@@ -426,12 +427,12 @@
          5. 데이터 플랫폼 소개 섹션 (Data Platform)
     =========================================== -->
     <section class="b2b-section bg-gray b2b-reveal">
-        <div class="b2b-data-banner">
+        <div class="b2b-data-banner" data-aos="fade-up">
             <div class="b2b-data-text">
                 <h3>공사비 데이터를 기준으로<br>건설 실무를 더 명확하게</h3>
                 <p>건물종류별, 지역별, 면적별, 연도별 공사비 빅데이터를 활용하여 불투명한 원가 산정 과정을 혁신합니다.</p>
             </div>
-            <div class="b2b-data-stats">
+            <div class="b2b-data-stats" data-aos="fade-left" data-aos-delay="300">
                 <div class="b2b-stat-item">
                     <span class="b2b-stat-num">95%</span>
                     <span class="b2b-stat-label">예측 정확도</span>
@@ -452,12 +453,12 @@
          6. 공사비 교육 프리뷰 섹션 (Education Cards)
     =========================================== -->
     <section class="b2b-section b2b-reveal">
-        <div class="b2b-section-header">
+        <div class="b2b-section-header" data-aos="fade-up">
             <h2>프리미엄 공사비 교육</h2>
             <p>수십 년 현장 경험이 압축된 가장 실용적인 건축 적산 온라인 클래스</p>
         </div>
         <div class="b2b-grid-3">
-            <div class="b2b-edu-card">
+            <div class="b2b-edu-card" data-aos="fade-up" data-aos-delay="0">
                 <div class="b2b-edu-thumb" style="background-image: url('./public/static/img/education001.png');">
                     <span class="b2b-edu-badge">BEST</span>
                 </div>
@@ -466,7 +467,7 @@
                     <p>도면을 이해하고 도면이 어떻게 공사비로 바뀌는지 학습</p>
                 </div>
             </div>
-            <div class="b2b-edu-card">
+            <div class="b2b-edu-card" data-aos="fade-up" data-aos-delay="150">
                 <div class="b2b-edu-thumb" style="background-image: url('./public/static/img/education002.png');">
                     <span class="b2b-edu-badge">기초</span>
                 </div>
@@ -475,7 +476,7 @@
                     <p>골조 수량 산출법을 실습하고 산출 프로세스 이해</p>
                 </div>
             </div>
-            <div class="b2b-edu-card">
+            <div class="b2b-edu-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="b2b-edu-thumb" style="background-image: url('./public/static/img/education003.png');">
                     <span class="b2b-edu-badge">심화</span>
                 </div>
@@ -485,7 +486,7 @@
                 </div>
             </div>
         </div>
-        <div style="text-align:center; margin-top:40px;">
+        <div style="text-align:center; margin-top:40px;" data-aos="zoom-in">
             <a href="front/education/youtube/" class="b2b-btn-primary" style="padding:14px 40px;">모든 교육 콘텐츠 보기</a>
         </div>
     </section>
@@ -552,6 +553,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script src="./public/static/front/js/static-preview.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false, /* 스크롤 올리고 내릴 때마다 반복 작동 */
+            offset: 100
+        });
+    </script>
 
     <!-- Scroll Reveal & Quick Search Logic -->
     <script>
