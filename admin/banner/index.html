@@ -77,13 +77,13 @@
                                 </a>
                                 <ul class="nav-second-level mm-collapse" aria-expanded="false">
                                     <li>
-                                        <a href="../../admin/banner?area=main">메인 슬라이드</a>
+                                        <a href="/gongsabi.com/admin/banner/index.html?area=main">메인 슬라이드</a>
                                     </li>
                                     <li>
-                                        <a href="../../admin/banner?area=middle">중하단</a>
+                                        <a href="/gongsabi.com/admin/banner/index.html?area=middle">중하단</a>
                                     </li>
                                     <li>
-                                        <a href="../../admin/banner?area=bottom">최하단</a>
+                                        <a href="/gongsabi.com/admin/banner/index.html?area=bottom">최하단</a>
                                     </li>
                                 </ul>
                             </li>
@@ -584,5 +584,23 @@ $(function() {
         잠시만 기다려 주십시오.
     </div>
 
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const area = urlParams.get('area');
+    if (area === 'main') {
+        document.querySelector('.page-title').innerText = '메인 슬라이드 관리';
+        document.querySelector('.header-title').innerText = '메인 슬라이드 목록';
+    } else if (area === 'middle') {
+        document.querySelector('.page-title').innerText = '중하단 배너 관리';
+        document.querySelector('.header-title').innerText = '중하단 배너 목록';
+    } else if (area === 'bottom') {
+        document.querySelector('.page-title').innerText = '최하단 배너 관리';
+        document.querySelector('.header-title').innerText = '최하단 배너 목록';
+    }
+});
+</script>
 
 </body></html>
