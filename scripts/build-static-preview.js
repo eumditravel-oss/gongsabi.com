@@ -229,10 +229,9 @@ function rewriteStaticHtml(raw, route, options = {}) {
 
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
-    // Remove legacy headers (gnb_area, header_wrapper)
-    html = html.replace(/<div\b[^>]*class=["']gnb_area["'][\s\S]*?<\/div>/i, '');
-    html = html.replace(/<div\b[^>]*class=["']header_wrapper["'][\s\S]*?<\/div>/i, '');
-    html = html.replace(/<header\b[^>]*class=["'][^"']*header_wrapper[^"']*["'][\s\S]*?<\/header>/i, '');
+    // Remove legacy headers (gnb_area, header_wrapper, and the entire <header> tag)
+    html = html.replace(/<header\b[\s\S]*?<\/header>/i, '');
+    html = html.replace(/<div\b[^>]*class=["']sub_header_wrapper["'][\s\S]*?<\/div>/i, '');
     
     // Remove legacy footers
     html = html.replace(/<div\b[^>]*class=["']footer_wrapper["'][\s\S]*?<\/div>/i, '');
