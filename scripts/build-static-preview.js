@@ -229,8 +229,9 @@ function rewriteStaticHtml(raw, route, options = {}) {
 
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
-    // We no longer remove legacy headers/footers via Regex to prevent broken HTML DOMs.
-    // Instead, they are completely hidden via CSS (b2b-platform.css)
+    // Remove legacy headers/footers via Regex
+    html = html.replace(/<header>\\s*<div class="gnb_area">[\\s\\S]*?<\\/ul>\\s*<\\/div>\\s*<\\/header>/, '');
+    html = html.replace(/<footer>\\s*<div class="footer_wrapper">[\\s\\S]*?<\\/footer>/, '');
 
     // Inject B2B Header
     html = html.replace(/(<body\b[^>]*>)/i, '$1\n' + getB2BHeader(prefix));
@@ -242,17 +243,106 @@ function rewriteStaticHtml(raw, route, options = {}) {
     if(route.includes('community/')) pageTitle = '공사비 커뮤니티';
     if(route.includes('auth/') || route.includes('customer/')) pageTitle = '고객센터 / 회원서비스';
 
-    // Remove old sub_title_wrapper if exists and replace with B2B Page Header
-    html = html.replace(/<div\b[^>]*class=["']sub_title_wrapper["'][\s\S]*?<\/div>/i, '');
+    // Remove old sub_title_wrapper if exists
+    html = html.replace(/<div\\b[^>]*class=["']sub_title_wrapper["'][\\s\\S]*?<\\/div>/i, '');
     
-    const pageHeader = `
-      <div class="b2b-page-header">
-          <div class="b2b-breadcrumb">홈 <span>></span> ${pageTitle}</div>
-          <h1 class="b2b-page-title">${pageTitle}</h1>
-      </div>
-    `;
+    // Inject custom UI for specific routes
+    if (route === 'front/data/gongsabi') {
+      // Remove old sub header, hero, search wrapper and table for gongsabi data page
+      html = html.replace(/<div class="sub_header_area">[\\s\\S]*?<\\/script>/, '');
+      html = html.replace(/<div class="classy-hero-blocks[\\s\\S]*?<\\/section>/, '');
+      
+      const b2bSearchCard = \`
+    <!-- B2B Page Header -->
+    <div class="b2b-page-header" style="background:#0F172A; padding:60px 0; text-align:center;">
+        <div style="max-width:1400px; margin:0 auto; padding:0 40px;">
+            <div style="color:#94A3B8; font-size:14px; margin-bottom:15px;">홈 &gt; 공사비 검색 &gt; <span style="color:#fff;">면적당 공사비 검색</span></div>
+            <h2 style="color:#fff; font-size:36px; font-weight:800; margin-bottom:20px; font-family:'Nanum Gothic', sans-serif;">면적당 공사비 검색</h2>
+            <p style="color:#CBD5E1; font-size:16px; line-height:1.6; max-width:600px; margin:0 auto;">
+                건물종류, 면적, 지역, 착공연도를 기준으로 공사비 데이터를 확인하세요.<br>
+                <a href="\${prefix}front/auth/regist/" style="color:var(--b2b-accent-green); font-weight:700;">유료회원 가입</a> 시 공사비의 모든 상세 정보를 열람할 수 있습니다.
+            </p>
+        </div>
+    </div>
 
-    html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\n$1');
+    <!-- B2B Search Card Area -->
+    <div style="background:#F1F5F9; padding:60px 0 100px;">
+        <div style="max-width:1200px; margin:0 auto; padding:0 40px;">
+            <div style="background:#fff; border-radius:16px; padding:40px; box-shadow:0 10px 30px rgba(0,0,0,0.05); margin-top:-100px; position:relative; z-index:10;">
+                <form method="get">
+                    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
+                        <div style="display:flex; flex-direction:column;">
+                            <label style="font-size:13px; color:#64748B; font-weight:700; margin-bottom:8px;">건물 종류</label>
+                            <select name="c4" style="padding:12px; border:1px solid #E2E8F0; border-radius:8px; font-size:15px; color:#334155; outline:none; cursor:pointer; background:#F8FAFC;">
+                                <option value="">건물 종류 전체</option>
+                                <option value="1">아파트, 주상복합, 오피스텔</option>
+                                <option value="2">근생, 오피스, 관청</option>
+                                <option value="3">문화, 종교, 의료, 운동</option>
+                                <option value="4">공장, 창고, 기타</option>
+                            </select>
+                        </div>
+                        <div style="display:flex; flex-direction:column;">
+                            <label style="font-size:13px; color:#64748B; font-weight:700; margin-bottom:8px;">면적 (㎡)</label>
+                            <select name="c7" style="padding:12px; border:1px solid #E2E8F0; border-radius:8px; font-size:15px; color:#334155; outline:none; cursor:pointer; background:#F8FAFC;">
+                                <option value="">면적 전체</option>
+                                <option value="1">1,000 미만</option>
+                                <option value="2">1,000 ~ 5,000 미만</option>
+                                <option value="3">5,000 ~ 10,000 미만</option>
+                                <option value="4">10,000 ~ 20,000 미만</option>
+                            </select>
+                        </div>
+                        <div style="display:flex; flex-direction:column;">
+                            <label style="font-size:13px; color:#64748B; font-weight:700; margin-bottom:8px;">지역</label>
+                            <select name="c9" style="padding:12px; border:1px solid #E2E8F0; border-radius:8px; font-size:15px; color:#334155; outline:none; cursor:pointer; background:#F8FAFC;">
+                                <option value="">전국</option>
+                                <option value="서울시">서울시</option>
+                                <option value="경기도">경기도</option>
+                                <option value="인천시">인천시</option>
+                                <option value="부산시">부산시</option>
+                            </select>
+                        </div>
+                        <div style="display:flex; flex-direction:column;">
+                            <label style="font-size:13px; color:#64748B; font-weight:700; margin-bottom:8px;">착공연도</label>
+                            <select name="c11" style="padding:12px; border:1px solid #E2E8F0; border-radius:8px; font-size:15px; color:#334155; outline:none; cursor:pointer; background:#F8FAFC;">
+                                <option value="">연도 전체</option>
+                                <option value="2020">2020년대</option>
+                                <option value="2010">2010년대</option>
+                                <option value="2000">2000년대</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="margin-top:20px; border-top:1px solid #E2E8F0; padding-top:20px; display:flex; gap:15px;">
+                        <input type="text" name="keyword" placeholder="검색어를 입력해 주십시오." style="flex:1; padding:15px 20px; border:1px solid #E2E8F0; border-radius:8px; font-size:15px; outline:none; background:#F8FAFC;">
+                        <button type="submit" class="b2b-btn-primary" style="padding:0 50px; font-size:16px; border-radius:8px;"><i class="fas fa-search" style="margin-right:8px;"></i> 데이터 검색</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Result Header & Empty State -->
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:50px; margin-bottom:20px;">
+                <h4 style="font-size:20px; font-weight:800; margin:0; color:#0F172A;">검색 결과 <span style="color:var(--b2b-primary);">0건</span></h4>
+                <button class="b2b-btn-outline" style="font-size:14px; padding:8px 16px; border-color:#CBD5E1; color:#475569;"><i class="fas fa-file-excel" style="margin-right:6px; color:#10B981;"></i> 엑셀 다운로드</button>
+            </div>
+            <div style="background:#fff; border-radius:16px; padding:80px 20px; text-align:center; box-shadow:0 4px 6px rgba(0,0,0,0.02); border:1px solid #E2E8F0;">
+                <div style="width:80px; height:80px; background:#F1F5F9; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+                    <i class="fas fa-search-minus" style="font-size:32px; color:#94A3B8;"></i>
+                </div>
+                <h5 style="font-size:20px; font-weight:700; color:#1E293B; margin-bottom:12px;">검색 조건에 맞는 데이터가 없습니다.</h5>
+                <p style="color:#64748B; font-size:15px; margin-bottom:24px; line-height:1.6;">선택하신 조건의 공사비 데이터가 존재하지 않거나, 현재 정적 배포 환경이므로<br>실제 데이터베이스 통신이 이루어지지 않았습니다.</p>
+                <a href="\${prefix}front/data/gongsabi/" class="b2b-btn-outline" style="padding:10px 24px; font-size:14px; border-radius:8px;">조건 초기화</a>
+            </div>
+        </div>
+    </div>\n\`;
+      
+      html = html.replace(/(<div\\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, b2bSearchCard + '\\n$1');
+    } else {
+      const pageHeader = \`
+        <div class="b2b-page-header">
+            <div class="b2b-breadcrumb">홈 <span>></span> \${pageTitle}</div>
+            <h1 class="b2b-page-title">\${pageTitle}</h1>
+        </div>
+      \`;
+      html = html.replace(/(<div\\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\\n$1');
+    }
 
     // Inject B2B Footer
     html = html.replace(/(<\/body>)/i, getB2BFooter(prefix) + '\n$1');
