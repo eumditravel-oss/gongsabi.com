@@ -35,6 +35,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
+    <!-- Inject Front CDNs and B2B Platform CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
 </head>
 
 <body class="kor main-page">
@@ -118,40 +123,49 @@
             <div class="carousel-inner">
                 <!-- Slide 1: 공사비 검색 -->
                 <div class="carousel-item active">
-                    <div class="b2b-hero-bg" style="background-image: url('public/static/img/slider13.jpg');"></div>
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider13.jpg');"></div>
                     <div class="b2b-hero-overlay"></div>
                     <div class="b2b-hero-content">
-                        <span class="b2b-slide-label">Data Platform</span>
-                        <h2 class="b2b-slide-title" style="color:#fff;">대한민국 건설 공사비를<br>데이터로 확인하다</h2>
-                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.8);">건물종류, 지역, 면적, 착공연도 기준으로 실시간 공사비를 검색하고<br>적산·수량산출에 필요한 실무 정보를 확인하세요.</p>
+                        <h2 class="b2b-slide-title" style="color:#fff;">공사비닷컴</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">대한민국 건설 공사비를 건물종류, 위치, 면적, 연도별로 확인하세요.</p>
                         <div class="b2b-slide-actions">
                             <a href="./front/data/gongsabi/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">공사비 검색하기 <i class="fas fa-search ml-2"></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 2: 내역서 작성 -->
+                <!-- Slide 2: 공사비 교육 -->
                 <div class="carousel-item">
-                    <div class="b2b-hero-bg" style="background-image: url('public/static/img/main_section2.jpg');"></div>
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider15.jpg');"></div>
                     <div class="b2b-hero-overlay"></div>
                     <div class="b2b-hero-content">
-                        <span class="b2b-slide-label">Smart Solution</span>
+                        <h2 class="b2b-slide-title" style="color:#fff;">현장 기술자를 위한<br>공사비 실무 교육</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">공사비 기초부터 설계변경, 수량산출까지 체계적으로 학습하세요.</p>
+                        <div class="b2b-slide-actions">
+                            <a href="./front/education/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">교육 콘텐츠 보기 <i class="fas fa-laptop-code ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3: 내역서 작성 -->
+                <div class="carousel-item">
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/main_section2.jpg');"></div>
+                    <div class="b2b-hero-overlay"></div>
+                    <div class="b2b-hero-content">
                         <h2 class="b2b-slide-title" style="color:#fff;">실무에 바로 쓰는<br>내역서 자동 작성</h2>
-                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.8);">복잡한 수량 산출과 간접비 계산의 어려움을 덜어냅니다.<br>적산, 수량산출, 내역서 작성 흐름을 한 곳에서 해결하세요.</p>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">적산, 수량산출, 내역서 작성 흐름을 한 곳에서 확인하세요.</p>
                         <div class="b2b-slide-actions">
                             <a href="./front/report/geonchuk/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">내역서 작성하기 <i class="fas fa-file-invoice ml-2"></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 3: 공사비 교육 -->
+                <!-- Slide 4: 커뮤니티 -->
                 <div class="carousel-item">
-                    <div class="b2b-hero-bg" style="background-image: url('public/static/img/slider15.jpg');"></div>
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider14.jpg');"></div>
                     <div class="b2b-hero-overlay"></div>
                     <div class="b2b-hero-content">
-                        <span class="b2b-slide-label">Expert Education</span>
-                        <h2 class="b2b-slide-title" style="color:#fff;">현장 기술자를 위한<br>공사비 실무 교육</h2>
-                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.8);">현동명 대표의 노하우가 담긴 프리미엄 강의.<br>공사비 기초부터 설계변경, 수량산출까지 체계적으로 학습하세요.</p>
+                        <h2 class="b2b-slide-title" style="color:#fff;">건설 실무자를 연결하는 공간</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">공사비 정보, 자료, 구인구직, 실무 질문을 함께 나누세요.</p>
                         <div class="b2b-slide-actions">
-                            <a href="./front/education/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">교육 콘텐츠 보기 <i class="fas fa-laptop-code ml-2"></i></a>
+                            <a href="./front/community/market/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">커뮤니티 보기 <i class="fas fa-users ml-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -171,7 +185,7 @@
     <!-- ==========================================
          3. QUICK SEARCH PANEL (Floating under slider)
     =========================================== -->
-    <div class="b2b-quick-search-wrapper">
+    <div class="b2b-quick-search-wrapper b2b-reveal">
         <div class="b2b-quick-search">
             <div class="b2b-search-header">
                 <h3><i class="fas fa-chart-bar" style="color:var(--b2b-accent-yellow);"></i> 스마트 공사비 검색 (Quick Search)</h3>
@@ -213,87 +227,156 @@
     </div>
 
     <!-- ==========================================
-         4. CORE FEATURES (서비스 카드)
+         4. 주요 서비스 섹션 (Service Cards)
     =========================================== -->
-    <section class="b2b-features-section" style="padding: 40px 0 80px;">
-        <h2 class="b2b-section-title">전문가를 위한 핵심 솔루션</h2>
-        <p class="b2b-section-subtitle">건설 적산 및 원가 관리의 모든 프로세스를 공사비닷컴 하나로 해결합니다.</p>
-        <div class="b2b-features-grid" style="max-width:1400px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:repeat(3, 1fr); gap:30px;">
-            <div class="b2b-card" style="margin-bottom:0;">
-                <h4 style="font-size:20px; margin-bottom:12px; color:var(--b2b-primary);"><i class="fas fa-search-dollar"></i> 스마트 공사비 검색</h4>
-                <p style="color:var(--b2b-text-muted); font-size:15px; margin-bottom:20px;">건물 종류별, 면적별, 연도별 상세 공사비 단가와 내역을 즉시 검색합니다.</p>
-                <a href="front/data/" style="font-weight:600; color:var(--b2b-primary);">기능 자세히 보기 <i class="fas fa-arrow-right"></i></a>
+    <section class="b2b-section b2b-reveal">
+        <div class="b2b-section-header">
+            <h2>전문가를 위한 핵심 솔루션</h2>
+            <p>건설 적산 및 원가 관리의 모든 프로세스를 공사비닷컴 하나로 해결합니다.</p>
+        </div>
+        <div class="b2b-service-grid">
+            <div class="b2b-service-card">
+                <div class="b2b-service-icon"><i class="fas fa-search-dollar"></i></div>
+                <h4>공사비 검색</h4>
+                <p>건물 종류별, 면적별, 연도별 상세 공사비 단가와 내역 즉시 확인</p>
+                <a href="front/data/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
             </div>
-            <div class="b2b-card" style="margin-bottom:0;">
-                <h4 style="font-size:20px; margin-bottom:12px; color:var(--b2b-primary);"><i class="fas fa-file-invoice"></i> 자동 내역서 작성</h4>
-                <p style="color:var(--b2b-text-muted); font-size:15px; margin-bottom:20px;">복잡한 건축 및 골조 내역서, 공사기간 산정 등을 빠르고 정확하게 산출합니다.</p>
-                <a href="front/report/" style="font-weight:600; color:var(--b2b-primary);">기능 자세히 보기 <i class="fas fa-arrow-right"></i></a>
+            <div class="b2b-service-card">
+                <div class="b2b-service-icon"><i class="fas fa-file-invoice"></i></div>
+                <h4>내역서 작성</h4>
+                <p>복잡한 건축/골조 내역서 및 공사기간 산정을 빠르고 정확하게 산출</p>
+                <a href="front/report/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
             </div>
-            <div class="b2b-card" style="margin-bottom:0;">
-                <h4 style="font-size:20px; margin-bottom:12px; color:var(--b2b-primary);"><i class="fas fa-laptop-code"></i> 실무 중심 동영상 교육</h4>
-                <p style="color:var(--b2b-text-muted); font-size:15px; margin-bottom:20px;">건축견적이야기 기반 현동명 대표 직강 및 수량산출 실무 커리큘럼을 제공합니다.</p>
-                <a href="front/education/" style="font-weight:600; color:var(--b2b-primary);">기능 자세히 보기 <i class="fas fa-arrow-right"></i></a>
+            <div class="b2b-service-card">
+                <div class="b2b-service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h4>공사비 교육</h4>
+                <p>현동명 대표 직강 및 건축 적산, 수량산출 실무 커리큘럼 제공</p>
+                <a href="front/education/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
+            </div>
+            <div class="b2b-service-card">
+                <div class="b2b-service-icon"><i class="fas fa-users"></i></div>
+                <h4>커뮤니티</h4>
+                <p>현장 자재 거래, 구인구직, 공사비 견적 의뢰 및 노하우 공유 공간</p>
+                <a href="front/community/market/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
+            </div>
+            <div class="b2b-service-card">
+                <div class="b2b-service-icon"><i class="fas fa-headset"></i></div>
+                <h4>고객센터</h4>
+                <p>최신 공지사항, 자주 묻는 질문(Q&A), 사이트 이용 가이드 안내</p>
+                <a href="front/customer/notice/" class="b2b-btn-outline" style="padding:8px 16px; width:100%; font-size:13px;">바로가기</a>
             </div>
         </div>
     </section>
 
     <!-- ==========================================
-         5. BRAND STORY & COMMUNITY
+         5. 데이터 플랫폼 소개 섹션 (Data Platform)
     =========================================== -->
-    <section style="background:var(--b2b-bg-white); padding: 100px 0; border-top: 1px solid var(--b2b-border);">
-        <div style="max-width:1000px; margin:0 auto; text-align:center; padding:0 40px;">
-            <h2 style="color:var(--b2b-primary); font-size:36px; font-weight:800; margin-bottom:24px;">"공사비 산정의 불투명함을 데이터로 바꿉니다"</h2>
-            <p style="font-size:18px; color:var(--b2b-text-muted); line-height:1.8; margin-bottom:40px;">
-                20여 년간의 경험을 바탕으로 최고를 꿈꾸며, 세계 1위 견적기업을 만들겠습니다.<br>
-                공사비닷컴은 건설 실무자, 적산 전문가, 시공사가 모여 신뢰할 수 있는 데이터를 구축하는 대한민국 No.1 건설 원가 플랫폼입니다.
-            </p>
-            <div style="display:flex; justify-content:center; gap:20px;">
-                <a href="front/company/" class="b2b-btn-outline">회사소개 보기</a>
-                <a href="front/community/market/" class="b2b-btn-primary">커뮤니티 및 구인구직</a>
-                <a href="front/customer/contact/" class="b2b-btn-secondary" style="background:var(--b2b-accent-yellow); color:#000 !important;">업무 제휴 문의</a>
+    <section class="b2b-section bg-gray b2b-reveal">
+        <div class="b2b-data-banner">
+            <div class="b2b-data-text">
+                <h3>공사비 데이터를 기준으로<br>건설 실무를 더 명확하게</h3>
+                <p>건물종류별, 지역별, 면적별, 연도별 공사비 빅데이터를 활용하여 불투명한 원가 산정 과정을 혁신합니다.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
-         6. FOOTER
-    =========================================== -->
-    <footer style="background:var(--b2b-text-dark); color:rgba(255,255,255,0.7); padding:80px 0 40px; border-top:4px solid var(--b2b-accent-green);">
-        <div style="max-width:1400px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; padding:0 40px; margin-bottom:60px;">
-            <div>
-                <a href="index.html"><img src="public/static/img/logo.png" style="height:40px; filter:brightness(0) invert(1); margin-bottom:20px; opacity:0.9;" alt="공사비닷컴"></a>
-                <div style="font-size:14px; line-height:1.8;">
-                    <p style="margin:0;"><b>법인명:</b> (주)공사비닷컴 | <b>대표이사:</b> 현동명</p>
-                    <p style="margin:0;"><b>사업자등록번호:</b> 152-87-00466</p>
-                    <p style="margin:0;"><b>통신판매업:</b> 2017-서울송파-2115호 | <b>개인정보책임자:</b> 이서진</p>
-                    <p style="margin:0;"><b>주소:</b> (05585) 서울특별시 송파구 백제고분로 37길 6 송원빌딩 6층</p>
+            <div class="b2b-data-stats">
+                <div class="b2b-stat-item">
+                    <span class="b2b-stat-num">95%</span>
+                    <span class="b2b-stat-label">예측 정확도</span>
+                </div>
+                <div class="b2b-stat-item">
+                    <span class="b2b-stat-num">10M+</span>
+                    <span class="b2b-stat-label">누적 단가 데이터</span>
+                </div>
+                <div class="b2b-stat-item">
+                    <span class="b2b-stat-num">80%</span>
+                    <span class="b2b-stat-label">적산 시간 단축</span>
                 </div>
             </div>
-            <div>
-                <h4 style="color:#fff; font-size:16px; margin-bottom:20px;">고객 지원 및 정책</h4>
-                <ul style="list-style:none; padding:0; margin:0; line-height:2.2; font-size:14px;">
-                    <li><a href="front/customer/notice/" style="color:inherit;">공지사항</a></li>
-                    <li><a href="front/customer/faq/" style="color:inherit;">자주 묻는 질문 (FAQ)</a></li>
-                    <li><a href="front/company/term/" style="color:inherit;">이용약관</a></li>
-                    <li><a href="front/company/privacy/" style="color:inherit;">개인정보처리방침</a></li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         6. 공사비 교육 프리뷰 섹션 (Education Cards)
+    =========================================== -->
+    <section class="b2b-section b2b-reveal">
+        <div class="b2b-section-header">
+            <h2>프리미엄 공사비 교육</h2>
+            <p>수십 년 현장 경험이 압축된 가장 실용적인 건축 적산 온라인 클래스</p>
+        </div>
+        <div class="b2b-grid-3">
+            <div class="b2b-edu-card">
+                <div class="b2b-edu-thumb" style="background-image: url('./public/static/img/education001.png');">
+                    <span class="b2b-edu-badge">BEST</span>
+                </div>
+                <div class="b2b-edu-info">
+                    <h4>1부 공사비의 이해</h4>
+                    <p>도면을 이해하고 도면이 어떻게 공사비로 바뀌는지 학습</p>
+                </div>
             </div>
-            <div>
-                <h4 style="color:#fff; font-size:16px; margin-bottom:20px;">비즈니스 문의</h4>
-                <ul style="list-style:none; padding:0; margin:0; line-height:2.2; font-size:14px;">
-                    <li><b>대표전화:</b> <a href="tel:02-2202-2258" style="color:var(--b2b-accent-green); font-weight:700;">02.2202.2258</a></li>
-                    <li><b>채용문의:</b> sjlee@gongsabi.com</li>
-                    <li><b>파트너제휴:</b> partner@gongsabi.com</li>
-                </ul>
+            <div class="b2b-edu-card">
+                <div class="b2b-edu-thumb" style="background-image: url('./public/static/img/education002.png');">
+                    <span class="b2b-edu-badge">기초</span>
+                </div>
+                <div class="b2b-edu-info">
+                    <h4>2부 골조 수량 산출</h4>
+                    <p>골조 수량 산출법을 실습하고 산출 프로세스 이해</p>
+                </div>
+            </div>
+            <div class="b2b-edu-card">
+                <div class="b2b-edu-thumb" style="background-image: url('./public/static/img/education003.png');">
+                    <span class="b2b-edu-badge">심화</span>
+                </div>
+                <div class="b2b-edu-info">
+                    <h4>3부 마감 수량 산출</h4>
+                    <p>마감공사 항목의 산출을 실습하고 남들이 한 것을 이해하자</p>
+                </div>
             </div>
         </div>
-        <div style="max-width:1400px; margin:0 auto; padding:30px 40px 0; border-top:1px solid rgba(255,255,255,0.1); font-size:13px; text-align:center;">
-            COPYRIGHT © gongsabi.com. All rights reserved.
+        <div style="text-align:center; margin-top:40px;">
+            <a href="front/education/youtube/" class="b2b-btn-primary" style="padding:14px 40px;">모든 교육 콘텐츠 보기</a>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         7. FOOTER (푸터 복구)
+    =========================================== -->
+    <footer class="b2b-footer">
+        <div class="b2b-footer-container">
+            <div class="b2b-footer-top">
+                <div class="b2b-footer-links">
+                    <a href="front/company/term/">이용약관</a>
+                    <a href="front/company/privacy/">개인정보처리방침</a>
+                    <a href="front/company/">오시는길</a>
+                </div>
+                <div class="b2b-footer-sns">
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fas fa-comment"></i></a>
+                </div>
+            </div>
+            <div class="b2b-footer-grid">
+                <div class="b2b-footer-info">
+                    <p><strong>법인명</strong> (주)공사비닷컴</p>
+                    <p><strong>대표이사</strong> 현동명</p>
+                    <p><strong>사업자등록번호</strong> 152-87-00466 <a href="#" style="color:#6B7280; text-decoration:underline;">사업자정보확인</a></p>
+                    <p><strong>통신판매업</strong> 2017-서울송파-2115호</p>
+                    <p><strong>개인정보책임자</strong> 이서진</p>
+                    <p><strong>주소</strong> (05585) 서울특별시 송파구 백제고분로 37길 6 송원빌딩 6층</p>
+                </div>
+                <div class="b2b-footer-info">
+                    <p><strong>채용문의</strong> sjlee@gongsabi.com</p>
+                    <p><strong>업무 및 파트너 제휴</strong> partner@gongsabi.com</p>
+                    <p><strong>기타 문의</strong> cs@gongsabi.com</p>
+                    <p><strong>대표전화</strong> 02.2202.2258</p>
+                </div>
+            </div>
+            <div class="b2b-footer-copyright">
+                COPYRIGHT © gongsabi.com. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <!-- ==========================================
-         7. MODALS (Legacy Preservation)
+         8. MODALS (Legacy Preservation)
     =========================================== -->
     <div class="modal fade" id="membership_info" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -310,5 +393,35 @@
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="./public/static/front/js/static-preview.js"></script>
+
+    <!-- Scroll Reveal Logic -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const reveals = document.querySelectorAll(".b2b-reveal");
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                    observer.unobserve(entry.target); // 한 번만 실행
+                }
+            });
+        }, revealOptions);
+
+        reveals.forEach(reveal => {
+            revealObserver.observe(reveal);
+        });
+    });
+    </script>
 </body>
 </html>
