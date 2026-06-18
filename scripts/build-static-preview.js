@@ -223,18 +223,18 @@ function rewriteStaticHtml(raw, route, options = {}) {
   html = rewriteInternalAttributes(html, 'src', prefix);
   html = rewriteInternalAttributes(html, 'action', prefix);
 
+  // FORCE FIX: Catch any remaining relative or absolute public/static/ paths and apply correct prefix
+  html = html.replace(/(href|src)=["'](?:\.\.\/)*\/?public\/static\//gi, '$1="' + prefix + 'public/static/');
+
   html = html.replace(/action=(["'])[^"']*\\1/gi, 'action="#"');
   html = html.replace(/<form\b(?![^>]*\bonsubmit=)/gi, '<form onsubmit="return false;"');
-  html = html.replace(/<a\b([^>]*?)href=(["'])#\\2/gi, '<a$1href="#"');
+  html = html.replace(/<a\b([^>]*?)href=(["'])#\2/gi, '<a$1href="#"');
 
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
     // Remove legacy headers/footers via Regex
     html = html.replace(/<header>\s*<div class="gnb_area">[\s\S]*?<\/ul>\s*<\/div>\s*<\/header>/, '');
     html = html.replace(/<footer>\s*<div class="footer_wrapper">[\s\S]*?<\/footer>/, '');
-
-    // Inject B2B Header
-    html = html.replace(/(<body\b[^>]*>)/i, '$1\n' + getB2BHeader(prefix));
 
     // Wrap Subpage Content & Inject Page Header (Breadcrumbs)
     let pageTitle = '서비스';
@@ -243,15 +243,14 @@ function rewriteStaticHtml(raw, route, options = {}) {
     if(route.includes('community/')) pageTitle = '공사비 커뮤니티';
     if(route.includes('auth/') || route.includes('customer/')) pageTitle = '고객센터 / 회원서비스';
 
-    // Remove old sub_title_wrapper if exists
+    // Remove old wrappers to clean up space
     html = html.replace(/<div\b[^>]*class=["']sub_title_wrapper["'][\s\S]*?<\/div>/i, '');
+    html = html.replace(/<div class="sub_header_area">[\s\S]*?<\/script>/, '');
+    html = html.replace(/<div class="classy-hero-blocks[\s\S]*?<\/section>/, '');
     
+    let customUI = '';
     // Inject custom UI for specific routes
     if (route === 'front/data/gongsabi') {
-      // Remove old sub header, hero, search wrapper and table for gongsabi data page
-      html = html.replace(/<div class="sub_header_area">[\s\S]*?<\/script>/, '');
-      html = html.replace(/<div class="classy-hero-blocks[\s\S]*?<\/section>/, '');
-      
       const b2bSearchCard = `
     <!-- B2B Page Header -->
     <div class="b2b-page-header" style="background:#0F172A; padding:60px 0; text-align:center;">
@@ -260,7 +259,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
             <h2 style="color:#fff; font-size:36px; font-weight:800; margin-bottom:20px; font-family:'Nanum Gothic', sans-serif;">면적당 공사비 검색</h2>
             <p style="color:#CBD5E1; font-size:16px; line-height:1.6; max-width:600px; margin:0 auto;">
                 건물종류, 면적, 지역, 착공연도를 기준으로 공사비 데이터를 확인하세요.<br>
-                <a href="\${prefix}front/auth/regist/" style="color:var(--b2b-accent-green); font-weight:700;">유료회원 가입</a> 시 공사비의 모든 상세 정보를 열람할 수 있습니다.
+                <a href="${prefix}front/auth/regist/" style="color:var(--b2b-accent-green); font-weight:700;">유료회원 가입</a> 시 공사비의 모든 상세 정보를 열람할 수 있습니다.
             </p>
         </div>
     </div>
@@ -328,7 +327,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
                 </div>
                 <h5 style="font-size:20px; font-weight:700; color:#1E293B; margin-bottom:12px;">검색 조건에 맞는 데이터가 없습니다.</h5>
                 <p style="color:#64748B; font-size:15px; margin-bottom:24px; line-height:1.6;">선택하신 조건의 공사비 데이터가 존재하지 않거나, 현재 정적 배포 환경이므로<br>실제 데이터베이스 통신이 이루어지지 않았습니다.</p>
-                <a href="\${prefix}front/data/gongsabi/" class="b2b-btn-outline" style="padding:10px 24px; font-size:14px; border-radius:8px;">조건 초기화</a>
+                <a href="${prefix}front/data/gongsabi/" class="b2b-btn-outline" style="padding:10px 24px; font-size:14px; border-radius:8px;">조건 초기화</a>
             </div>
 
             <!-- Restored Backup Table Structure (Sample) -->
@@ -367,16 +366,25 @@ function rewriteStaticHtml(raw, route, options = {}) {
             </div>
         </div>
     </div>\n`;
-      
-      html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, b2bSearchCard + '\\n$1');
+      customUI = b2bSearchCard;
     } else {
       const pageHeader = `
         <div class="b2b-page-header">
-            <div class="b2b-breadcrumb">홈 <span>></span> \${pageTitle}</div>
-            <h1 class="b2b-page-title">\${pageTitle}</h1>
+            <div class="b2b-breadcrumb">홈 <span>></span> ${pageTitle}</div>
+            <h1 class="b2b-page-title">${pageTitle}</h1>
         </div>
       `;
-      html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\\n$1');
+      customUI = pageHeader + '\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\n';
+    }
+
+    // Inject B2B Header AND the custom UI right into the body.
+    // To ensure the customUI wraps the content safely, we place it after the header.
+    html = html.replace(/(<body\b[^>]*>)/i, '$1\n' + getB2BHeader(prefix) + '\n' + customUI);
+    
+    // Note: Since we opened a div.b2b-card for non-gongsabi pages, we should ideally close it before the footer,
+    // but the getB2BFooter injection will just append to the end. To be safe:
+    if (route !== 'front/data/gongsabi') {
+        html = html.replace(/(<\/body>)/i, '</div>\n$1');
     }
 
     // Inject B2B Footer
