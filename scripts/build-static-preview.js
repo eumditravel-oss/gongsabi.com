@@ -224,8 +224,8 @@ function rewriteStaticHtml(raw, route, options = {}) {
   html = rewriteInternalAttributes(html, 'action', prefix);
 
   html = html.replace(/action=(["'])[^"']*\\1/gi, 'action="#"');
-  html = html.replace(/<form\\b(?![^>]*\\bonsubmit=)/gi, '<form onsubmit="return false;"');
-  html = html.replace(/<a\\b([^>]*?)href=(["'])#\\2/gi, '<a$1href="#"');
+  html = html.replace(/<form\b(?![^>]*\bonsubmit=)/gi, '<form onsubmit="return false;"');
+  html = html.replace(/<a\b([^>]*?)href=(["'])#\\2/gi, '<a$1href="#"');
 
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
@@ -244,7 +244,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
     if(route.includes('auth/') || route.includes('customer/')) pageTitle = '고객센터 / 회원서비스';
 
     // Remove old sub_title_wrapper if exists
-    html = html.replace(/<div\\b[^>]*class=["']sub_title_wrapper["'][\\s\\S]*?<\\/div>/i, '');
+    html = html.replace(/<div\b[^>]*class=["']sub_title_wrapper["'][\s\S]*?<\/div>/i, '');
     
     // Inject custom UI for specific routes
     if (route === 'front/data/gongsabi') {
@@ -333,7 +333,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
         </div>
     </div>\n\`;
       
-      html = html.replace(/(<div\\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, b2bSearchCard + '\\n$1');
+      html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, b2bSearchCard + '\\n$1');
     } else {
       const pageHeader = \`
         <div class="b2b-page-header">
@@ -341,7 +341,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
             <h1 class="b2b-page-title">\${pageTitle}</h1>
         </div>
       \`;
-      html = html.replace(/(<div\\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\\n$1');
+      html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\\n$1');
     }
 
     // Inject B2B Footer
