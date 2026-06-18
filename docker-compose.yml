@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # 웹 서버 (PHP & Apache)
+  web:
+    build: .
+    container_name: gongsabi_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./backend/home1/gongsabi/public_html:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=secret
+      - DB_NAME=gongsabi
+    depends_on:
+      - db
+    restart: always
+
+  # 데이터베이스 (MySQL)
+  db:
+    image: mysql:5.7
+    container_name: gongsabi_db
+    # 기존 데이터 깨짐 방지 인코딩 설정
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=gongsabi
+    volumes:
+      # 로컬 PC나 서버에 DB 데이터를 영구 저장
+      - db_data:/var/lib/mysql
+      # 도커가 처음 켜질 때 db-init 폴더 안에 있는 sql.gz 파일을 읽어서 자동 셋팅!
+      - ./db-init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    restart: always
+
+volumes:
+  db_data:

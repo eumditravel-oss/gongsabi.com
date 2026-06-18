@@ -34,3 +34,5 @@ public/static/file/
 .Trashes
 ehthumbs.db
 Thumbs.db
+backend/
+db-init/
