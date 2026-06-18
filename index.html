@@ -55,6 +55,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
+    <!-- Inject Front CDNs and B2B Platform CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
 </head>
 
 <body class="kor main-page">
@@ -208,13 +213,22 @@
     <!-- ==========================================
          3. QUICK SEARCH PANEL (Floating under slider)
     =========================================== -->
-    <div class="b2b-quick-search-wrapper b2b-reveal">
-        <div class="b2b-quick-search">
-            <div class="b2b-search-header">
-                <h3><i class="fas fa-chart-bar" style="color:var(--b2b-accent-yellow);"></i> 스마트 공사비 검색 (Quick Search)</h3>
-                <span>무료회원 샘플 데이터 열람 가능</span>
+    <div class="b2b-quick-search-wrapper b2b-reveal" style="z-index: 1001; position: relative;">
+        <div class="b2b-quick-search" style="padding-bottom: 0;">
+            <!-- Header (Clickable for Toggle) -->
+            <div class="b2b-search-header" style="cursor: pointer; padding-bottom: 30px;" onclick="toggleQuickSearch()">
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <h3 style="margin:0;"><i class="fas fa-chart-bar" style="color:var(--b2b-accent-yellow);"></i> 스마트 공사비 검색 (Quick Search)</h3>
+                    <span style="font-size:13px; background:#EEF2FF; color:var(--b2b-primary); padding:4px 10px; border-radius:20px; font-weight:700;">무료회원 샘플 데이터 열람 가능</span>
+                </div>
+                <button type="button" id="b2b-quick-toggle-btn" style="background:transparent; border:none; color:var(--b2b-primary); font-weight:800; font-size:15px; cursor:pointer; display:flex; align-items:center;">
+                    <i class="fas fa-chevron-down" style="margin-right:6px;"></i> 열기
+                </button>
             </div>
-            <form onsubmit="return false;" action="front/data/gongsabi/" method="GET" class="b2b-search-fields">
+
+            <!-- Body Wrapper for Slide Animation -->
+            <div id="b2b-quick-search-body" style="overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out; max-height: 0px; opacity: 0;">
+                <form onsubmit="return false;" action="front/data/gongsabi/" method="GET" class="b2b-search-fields" style="padding-bottom: 30px; border-top: 1px solid #E2E8F0; padding-top: 30px;">
                 <div class="b2b-field-group">
                     <label>건물 종류</label>
                     <select name="type">
@@ -246,6 +260,7 @@
                 </div>
                 <button type="submit" class="b2b-btn-primary b2b-search-btn">검색 시작</button>
             </form>
+            </div>
         </div>
     </div>
 
@@ -422,8 +437,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script src="./public/static/front/js/static-preview.js"></script>
 
-    <!-- Scroll Reveal Logic -->
+    <!-- Scroll Reveal & Quick Search Logic -->
     <script>
+    function toggleQuickSearch() {
+        const body = document.getElementById('b2b-quick-search-body');
+        const btn = document.getElementById('b2b-quick-toggle-btn');
+        if (body.style.maxHeight === '0px' || body.style.maxHeight === '') {
+            body.style.maxHeight = '500px';
+            body.style.opacity = '1';
+            btn.innerHTML = '<i class="fas fa-chevron-up" style="margin-right:6px;"></i> 접기';
+        } else {
+            body.style.maxHeight = '0px';
+            body.style.opacity = '0';
+            btn.innerHTML = '<i class="fas fa-chevron-down" style="margin-right:6px;"></i> 열기';
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         const reveals = document.querySelectorAll(".b2b-reveal");
 

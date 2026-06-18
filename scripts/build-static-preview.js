@@ -330,6 +330,41 @@ function rewriteStaticHtml(raw, route, options = {}) {
                 <p style="color:#64748B; font-size:15px; margin-bottom:24px; line-height:1.6;">선택하신 조건의 공사비 데이터가 존재하지 않거나, 현재 정적 배포 환경이므로<br>실제 데이터베이스 통신이 이루어지지 않았습니다.</p>
                 <a href="\${prefix}front/data/gongsabi/" class="b2b-btn-outline" style="padding:10px 24px; font-size:14px; border-radius:8px;">조건 초기화</a>
             </div>
+
+            <!-- Restored Backup Table Structure (Sample) -->
+            <div style="margin-top:40px; overflow-x:auto; background:#fff; border-radius:12px; border:1px solid #E2E8F0; box-shadow:0 2px 4px rgba(0,0,0,0.02);">
+                <table style="width:100%; text-align:center; border-collapse:collapse; min-width:800px;">
+                    <thead style="background:#F8FAFC; border-bottom:2px solid #E2E8F0;">
+                        <tr>
+                            <th style="padding:15px; color:#475569; font-size:14px;">건물종류</th>
+                            <th style="padding:15px; color:#475569; font-size:14px;">지역</th>
+                            <th style="padding:15px; color:#475569; font-size:14px;">연면적(㎡)</th>
+                            <th style="padding:15px; color:#475569; font-size:14px;">착공연도</th>
+                            <th style="padding:15px; color:#475569; font-size:14px;">직접공사비</th>
+                            <th style="padding:15px; color:#475569; font-size:14px;">간접공사비</th>
+                            <th style="padding:15px; color:#475569; font-size:14px;">총공사비</th>
+                            <th style="padding:15px; color:#475569; font-size:14px;">상세보기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid #E2E8F0;">
+                            <td style="padding:15px; font-size:14px; color:#334155;">업무시설</td>
+                            <td style="padding:15px; font-size:14px; color:#334155;">서울시</td>
+                            <td style="padding:15px; font-size:14px; color:#334155;">1,500.00</td>
+                            <td style="padding:15px; font-size:14px; color:#334155;">2024년</td>
+                            <td style="padding:15px; font-size:14px; color:#334155;">-</td>
+                            <td style="padding:15px; font-size:14px; color:#334155;">-</td>
+                            <td style="padding:15px; font-size:14px; font-weight:700; color:var(--b2b-primary);">유료회원 공개</td>
+                            <td style="padding:15px;">
+                                <button class="b2b-btn-primary" style="padding:6px 12px; font-size:12px; border-radius:4px;" data-toggle="modal" data-target="#membership_info">조회</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="padding:15px; text-align:center; font-size:13px; color:#94A3B8; background:#F8FAFC;">
+                    ※ 본 테이블은 정적 환경 테스트를 위한 데이터 표 구조 샘플입니다. 실제 데이터는 백엔드 연동 시 표시됩니다.
+                </div>
+            </div>
         </div>
     </div>\n`;
       
