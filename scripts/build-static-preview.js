@@ -256,6 +256,9 @@ function rewriteStaticHtml(raw, route, options = {}) {
       </style>
     `;
     html = html.replace(/(<head\b[^>]*>)/i, '$1\n' + hideLegacyCSS);
+
+    // Remove any hardcoded CodeIgniter PHP error blocks that were baked into the snapshot HTMLs
+    html = html.replace(/<div style=["']border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;["']>\s*<h4>A PHP Error was encountered<\/h4>[\s\S]*?<\/div>/gi, '');
     
     let customUI = '';
     // Inject custom UI for specific routes
