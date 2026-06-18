@@ -50,6 +50,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
+    <!-- Inject Front CDNs and B2B Platform CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
 </head>
 
 <body class="kor main-page">
@@ -209,7 +214,7 @@
                 <h3><i class="fas fa-chart-bar" style="color:var(--b2b-accent-yellow);"></i> 스마트 공사비 검색 (Quick Search)</h3>
                 <span>무료회원 샘플 데이터 열람 가능</span>
             </div>
-            <form action="front/data/gongsabi/" method="GET" class="b2b-search-fields">
+            <form onsubmit="return false;" action="front/data/gongsabi/" method="GET" class="b2b-search-fields">
                 <div class="b2b-field-group">
                     <label>건물 종류</label>
                     <select name="type">

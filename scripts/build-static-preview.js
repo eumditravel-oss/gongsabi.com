@@ -252,7 +252,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
       html = html.replace(/<div class="sub_header_area">[\s\S]*?<\/script>/, '');
       html = html.replace(/<div class="classy-hero-blocks[\s\S]*?<\/section>/, '');
       
-      const b2bSearchCard = \`
+      const b2bSearchCard = `
     <!-- B2B Page Header -->
     <div class="b2b-page-header" style="background:#0F172A; padding:60px 0; text-align:center;">
         <div style="max-width:1400px; margin:0 auto; padding:0 40px;">
@@ -331,16 +331,16 @@ function rewriteStaticHtml(raw, route, options = {}) {
                 <a href="\${prefix}front/data/gongsabi/" class="b2b-btn-outline" style="padding:10px 24px; font-size:14px; border-radius:8px;">조건 초기화</a>
             </div>
         </div>
-    </div>\n\`;
+    </div>\n`;
       
       html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, b2bSearchCard + '\\n$1');
     } else {
-      const pageHeader = \`
+      const pageHeader = `
         <div class="b2b-page-header">
             <div class="b2b-breadcrumb">홈 <span>></span> \${pageTitle}</div>
             <h1 class="b2b-page-title">\${pageTitle}</h1>
         </div>
-      \`;
+      `;
       html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\\n$1');
     }
 
