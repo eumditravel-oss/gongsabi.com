@@ -209,3 +209,18 @@ input:focus, select:focus, textarea:focus { border-color: var(--b2b-primary); bo
   .b2b-search-btn { grid-column: 1; }
   .b2b-megamenu-inner { grid-template-columns: 1fr; }
 }
+
+/* ========================================================
+   LEGACY HEADER PURGE (Overlap Fix)
+======================================================== */
+header:not(.b2b-header),
+.gnb_area,
+.header_wrapper,
+.sub_header_wrapper,
+.sub_nav_wrapper {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
