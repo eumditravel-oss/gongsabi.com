@@ -19,11 +19,21 @@
       return;
     }
 
-    var searchBtn = event.target.closest ? event.target.closest('button[type="submit"], input[type="submit"], .btn-search') : null;
-    if (searchBtn || (event.target.innerText && (event.target.innerText.trim() === '검색' || event.target.innerText.trim() === '공사비 검색'))) {
-      event.preventDefault();
-      alert('정적 미리보기 사이트에서는 데이터베이스 검색 기능이 지원되지 않습니다.\n실제 검색을 위해서는 웹 서버 환경이 필요합니다.');
-      return;
+    // Toggle Megamenu for mobile
+    var mobileBtn = event.target.closest ? event.target.closest('.b2b-mobile-menu-btn') : null;
+    if (mobileBtn) {
+       var nav = document.querySelector('.b2b-nav');
+       if(nav) {
+          nav.style.display = (nav.style.display === 'flex' ? 'none' : 'flex');
+          nav.style.flexDirection = 'column';
+          nav.style.position = 'absolute';
+          nav.style.top = '80px';
+          nav.style.left = '0';
+          nav.style.width = '100%';
+          nav.style.background = '#fff';
+          nav.style.padding = '20px';
+          nav.style.borderBottom = '1px solid #E2E8F0';
+       }
     }
   });
 }());

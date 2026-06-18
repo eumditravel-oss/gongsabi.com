@@ -230,16 +230,16 @@ function rewriteStaticHtml(raw, route, options = {}) {
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
     // Remove legacy headers (gnb_area, header_wrapper)
-    html = html.replace(/<div\\b[^>]*class=["']gnb_area["'][\\s\\S]*?<\\/div>/i, '');
-    html = html.replace(/<div\\b[^>]*class=["']header_wrapper["'][\\s\\S]*?<\\/div>/i, '');
-    html = html.replace(/<header\\b[^>]*class=["'][^"']*header_wrapper[^"']*["'][\\s\\S]*?<\\/header>/i, '');
+    html = html.replace(/<div\b[^>]*class=["']gnb_area["'][\s\S]*?<\/div>/i, '');
+    html = html.replace(/<div\b[^>]*class=["']header_wrapper["'][\s\S]*?<\/div>/i, '');
+    html = html.replace(/<header\b[^>]*class=["'][^"']*header_wrapper[^"']*["'][\s\S]*?<\/header>/i, '');
     
     // Remove legacy footers
-    html = html.replace(/<div\\b[^>]*class=["']footer_wrapper["'][\\s\\S]*?<\\/div>/i, '');
-    html = html.replace(/<footer\\b[\\s\\S]*?<\\/footer>/i, '');
+    html = html.replace(/<div\b[^>]*class=["']footer_wrapper["'][\s\S]*?<\/div>/i, '');
+    html = html.replace(/<footer\b[\s\S]*?<\/footer>/i, '');
 
     // Inject B2B Header
-    html = html.replace(/(<body\\b[^>]*>)/i, '$1\\n' + getB2BHeader(prefix));
+    html = html.replace(/(<body\b[^>]*>)/i, '$1\n' + getB2BHeader(prefix));
 
     // Wrap Subpage Content & Inject Page Header (Breadcrumbs)
     let pageTitle = '서비스';
@@ -249,7 +249,7 @@ function rewriteStaticHtml(raw, route, options = {}) {
     if(route.includes('auth/') || route.includes('customer/')) pageTitle = '고객센터 / 회원서비스';
 
     // Remove old sub_title_wrapper if exists and replace with B2B Page Header
-    html = html.replace(/<div\\b[^>]*class=["']sub_title_wrapper["'][\\s\\S]*?<\\/div>/i, '');
+    html = html.replace(/<div\b[^>]*class=["']sub_title_wrapper["'][\s\S]*?<\/div>/i, '');
     
     const pageHeader = `
       <div class="b2b-page-header">
