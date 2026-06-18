@@ -601,3 +601,14 @@ footer:not(.b2b-footer),
 @media (max-width: 480px) {
   .b2b-service-grid { grid-template-columns: 1fr; }
 }
+
+
+/* Fix Table Width in Subpages */
+table.table, .gongsabi-table, .company_ceo_table {
+    width: 100% !important;
+    display: table !important;
+    table-layout: auto;
+}
+.table-responsive {
+    display: table !important;
+}
