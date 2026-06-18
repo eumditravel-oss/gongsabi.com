@@ -204,21 +204,21 @@ function rewriteStaticHtml(raw, route, options = {}) {
   html = html.replace(/<base\b[^>]*>\s*/gi, '');
 
   const cdnLinks = options.admin 
-    ? \`    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">\`
-    : \`    <!-- Inject Front CDNs and B2B Platform CSS -->
+    ? `    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">`
+    : `    <!-- Inject Front CDNs and B2B Platform CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="\${prefix}public/static/front/css/b2b-platform.css">\`;
+    <link rel="stylesheet" href="${prefix}public/static/front/css/b2b-platform.css">`;
   
-  html = html.replace(/(<\/head>)/i, cdnLinks + '\\n$1');
+  html = html.replace(/(<\/head>)/i, cdnLinks + '\n$1');
 
   // URL overrides
-  html = html.replace(/["'](?:\\/static\\/front\\/css\\/style\\.css|public\\/static\\/front\\/css\\/style\\.css)\\?[^"']*/gi, \`"\${prefix}public/static/front/css/style-pages.css\`);
-  html = html.replace(/["'](?:\\/static\\/css\\/admin\\/style\\.css|public\\/static\\/css\\/admin\\/style\\.css)\\?[^"']*/gi, \`"\${prefix}public/static/css/admin/style-pages.css\`);
-  html = html.replace(/url\\((['"]?)\\/static\\//gi, \`url($1\${prefix}public/static/\`);
-  html = html.replace(/url\\((['"]?)\\/admin\\/assets\\//gi, \`url($1\${prefix}public/static/admin/assets/\`);
+  html = html.replace(/["'](?:\/static\/front\/css\/style\.css|public\/static\/front\/css\/style\.css)\?[^"']*/gi, `"${prefix}public/static/front/css/style-pages.css`);
+  html = html.replace(/["'](?:\/static\/css\/admin\/style\.css|public\/static\/css\/admin\/style\.css)\?[^"']*/gi, `"${prefix}public/static/css/admin/style-pages.css`);
+  html = html.replace(/url\((['"]?)\/static\//gi, `url($1${prefix}public/static/`);
+  html = html.replace(/url\((['"]?)\/admin\/assets\//gi, `url($1${prefix}public/static/admin/assets/`);
   html = rewriteInternalAttributes(html, 'href', prefix);
   html = rewriteInternalAttributes(html, 'src', prefix);
   html = rewriteInternalAttributes(html, 'action', prefix);
@@ -251,23 +251,23 @@ function rewriteStaticHtml(raw, route, options = {}) {
     // Remove old sub_title_wrapper if exists and replace with B2B Page Header
     html = html.replace(/<div\\b[^>]*class=["']sub_title_wrapper["'][\\s\\S]*?<\\/div>/i, '');
     
-    const pageHeader = \`
+    const pageHeader = `
       <div class="b2b-page-header">
-          <div class="b2b-breadcrumb">홈 <span>></span> \${pageTitle}</div>
-          <h1 class="b2b-page-title">\${pageTitle}</h1>
+          <div class="b2b-breadcrumb">홈 <span>></span> ${pageTitle}</div>
+          <h1 class="b2b-page-title">${pageTitle}</h1>
       </div>
-    \`;
+    `;
 
-    html = html.replace(/(<div\\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\\n$1');
+    html = html.replace(/(<div\b[^>]*class=["'][^"']*sub_wrapper[^"']*["'][^>]*>)/i, pageHeader + '\n<div class="b2b-card" style="max-width:1400px; margin:0 auto; border:none; box-shadow:none;">\n$1');
 
     // Inject B2B Footer
-    html = html.replace(/(<\\/body>)/i, getB2BFooter(prefix) + '\\n$1');
+    html = html.replace(/(<\/body>)/i, getB2BFooter(prefix) + '\n$1');
     
-    const cdnScripts = \`
+    const cdnScripts = `
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>\`;
-    html = html.replace(/<script\\b[^>]*src=["'][^"']*static-preview\\.js["'][^>]*><\\/script>\\s*/gi, '');
-    html = html.replace(/(<\\/body>)/i, cdnScripts + '\\n    <script src="' + prefix + 'public/static/front/js/static-preview.js"></script>\\n$1');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>`;
+    html = html.replace(/<script\b[^>]*src=["'][^"']*static-preview\.js["'][^>]*><\/script>\s*/gi, '');
+    html = html.replace(/(<\/body>)/i, cdnScripts + '\n    <script src="' + prefix + 'public/static/front/js/static-preview.js"></script>\n$1');
   }
 
   return html;
@@ -290,15 +290,15 @@ function buildCssCopies() {
       '.modal_content .modal_footer > div.modal_close{text-align:right!important;}',
       '.modal_content .modal_footer > div.modal_close a{display:inline-flex!important;align-items:center;justify-content:center;min-width:58px;height:28px;margin-top:6px;border:1px solid rgba(255,255,255,.85);border-radius:2px;background:rgba(255,255,255,.1);color:#fff!important;font-size:14px!important;line-height:26px!important;text-indent:0!important;text-decoration:none!important;}',
       '.modal_content .modal_footer > div.modal_close a:hover{background:rgba(255,255,255,.2);}',
-    ].join('\\n');
-    const css = fs.readFileSync(frontStyle, 'utf8').replace(/\\/static\\//g, '../../') + previewFixes;
+    ].join('\n');
+    const css = fs.readFileSync(frontStyle, 'utf8').replace(/\/static\//g, '../../') + previewFixes;
     fs.writeFileSync(frontPagesStyle, tidyText(css), 'utf8');
   }
 
   const adminStyle = path.join(root, 'public', 'static', 'css', 'admin', 'style.css');
   const adminPagesStyle = path.join(root, 'public', 'static', 'css', 'admin', 'style-pages.css');
   if (fs.existsSync(adminStyle)) {
-    const css = fs.readFileSync(adminStyle, 'utf8').replace(/\\/static\\//g, '../../').replace(/\\/admin\\/assets\\//g, '../../admin/assets/');
+    const css = fs.readFileSync(adminStyle, 'utf8').replace(/\/static\//g, '../../').replace(/\/admin\/assets\//g, '../../admin/assets/');
     ensureDir(path.dirname(adminPagesStyle));
     fs.writeFileSync(adminPagesStyle, tidyText(css), 'utf8');
   }
@@ -309,11 +309,11 @@ function buildCssCopies() {
     '.static-admin-note{position:fixed;right:16px;bottom:16px;z-index:9999;background:#323a46;color:#fff;border-radius:4px;padding:8px 12px;font-size:12px;box-shadow:0 3px 12px rgba(0,0,0,.18)}',
     'a[href="#"]{cursor:default}',
     '.btn[href="#"]{pointer-events:none}',
-  ].join('\\n')), 'utf8');
+  ].join('\n')), 'utf8');
 
   const frontPreviewJs = path.join(root, 'public', 'static', 'front', 'js', 'static-preview.js');
   ensureDir(path.dirname(frontPreviewJs));
-  fs.writeFileSync(frontPreviewJs, tidyText(\`(function () {
+  fs.writeFileSync(frontPreviewJs, tidyText(`(function () {
   function hideModal(closeLink) {
     var modal = closeLink && closeLink.closest ? closeLink.closest('.modal_content') : null;
     if (modal) modal.style.display = 'none';
@@ -352,7 +352,7 @@ function buildCssCopies() {
     }
   });
 }());
-\`), 'utf8');
+`), 'utf8');
 }
 
 function buildPublicPages() {
