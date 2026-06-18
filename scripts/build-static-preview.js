@@ -232,9 +232,9 @@ function rewriteStaticHtml(raw, route, options = {}) {
 
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
-    // Remove legacy headers/footers via Regex
-    html = html.replace(/<header>\s*<div class="gnb_area">[\s\S]*?<\/ul>\s*<\/div>\s*<\/header>/, '');
-    html = html.replace(/<footer>\s*<div class="footer_wrapper">[\s\S]*?<\/footer>/, '');
+    // Remove legacy headers/footers via Regex cleanly to prevent tag mismatch
+    html = html.replace(/<header>[\s\S]*?<\/header>/i, '');
+    html = html.replace(/<footer>[\s\S]*?<\/footer>/i, '');
 
     // Wrap Subpage Content & Inject Page Header (Breadcrumbs)
     let pageTitle = '서비스';
@@ -243,10 +243,10 @@ function rewriteStaticHtml(raw, route, options = {}) {
     if(route.includes('community/')) pageTitle = '공사비 커뮤니티';
     if(route.includes('auth/') || route.includes('customer/')) pageTitle = '고객센터 / 회원서비스';
 
-    // Remove old wrappers to clean up space
+    // Remove old wrappers to clean up space and prevent CSS conflicts
     html = html.replace(/<div\b[^>]*class=["']sub_title_wrapper["'][\s\S]*?<\/div>/i, '');
-    html = html.replace(/<div class="sub_header_area">[\s\S]*?<\/script>/, '');
-    html = html.replace(/<div class="classy-hero-blocks[\s\S]*?<\/section>/, '');
+    html = html.replace(/<div class="sub_header_wrapper">[\s\S]*?<\/script>/i, '');
+    html = html.replace(/<div class="classy-hero-blocks[\s\S]*?<\/section>/i, '');
     
     let customUI = '';
     // Inject custom UI for specific routes
