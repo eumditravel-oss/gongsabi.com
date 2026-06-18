@@ -211,16 +211,26 @@ input:focus, select:focus, textarea:focus { border-color: var(--b2b-primary); bo
 }
 
 /* ========================================================
-   LEGACY HEADER PURGE (Overlap Fix)
+   LEGACY HEADER/FOOTER PURGE (Overlap Fix)
+   Completely removes the old DOM from view without breaking it
 ======================================================== */
 header:not(.b2b-header),
+footer:not(.b2b-footer),
 .gnb_area,
 .header_wrapper,
 .sub_header_wrapper,
-.sub_nav_wrapper {
+.sub_nav_wrapper,
+.sub_title_wrapper,
+.footer_wrapper {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   height: 0 !important;
+  width: 0 !important;
   overflow: hidden !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }

@@ -156,7 +156,7 @@ function getB2BHeader(prefix) {
 function getB2BFooter(prefix) {
   return `
     <!-- Inject B2B Footer -->
-    <footer style="background:var(--b2b-text-dark); color:rgba(255,255,255,0.7); padding:80px 0 40px; border-top:4px solid var(--b2b-accent-green); margin-top:50px;">
+    <footer class="b2b-footer" style="background:var(--b2b-text-dark); color:rgba(255,255,255,0.7); padding:80px 0 40px; border-top:4px solid var(--b2b-accent-green); margin-top:50px;">
         <div style="max-width:1400px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; padding:0 40px; margin-bottom:60px;">
             <div>
                 <a href="${prefix}index.html"><img src="${prefix}public/static/img/logo.png" style="height:40px; filter:brightness(0) invert(1); margin-bottom:20px; opacity:0.9;" alt="공사비닷컴"></a>
@@ -229,13 +229,8 @@ function rewriteStaticHtml(raw, route, options = {}) {
 
   if (!options.admin && route !== '') {
     // --- B2B REDESIGN TEMPLATE INJECTION FOR SUBPAGES ---
-    // Remove legacy headers (gnb_area, header_wrapper, and the entire <header> tag)
-    html = html.replace(/<header\b[\s\S]*?<\/header>/i, '');
-    html = html.replace(/<div\b[^>]*class=["']sub_header_wrapper["'][\s\S]*?<\/div>/i, '');
-    
-    // Remove legacy footers
-    html = html.replace(/<div\b[^>]*class=["']footer_wrapper["'][\s\S]*?<\/div>/i, '');
-    html = html.replace(/<footer\b[\s\S]*?<\/footer>/i, '');
+    // We no longer remove legacy headers/footers via Regex to prevent broken HTML DOMs.
+    // Instead, they are completely hidden via CSS (b2b-platform.css)
 
     // Inject B2B Header
     html = html.replace(/(<body\b[^>]*>)/i, '$1\n' + getB2BHeader(prefix));
