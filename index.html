@@ -60,6 +60,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
+    <!-- Inject Front CDNs and B2B Platform CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="public/static/front/css/b2b-platform.css">
 </head>
 
 <body class="kor main-page">
@@ -147,64 +152,131 @@
 
     <!-- MAIN HERO SLIDER -->
     <section class="b2b-hero-slider">
-        <div id="b2bHeroCarousel" class="carousel slide b2b-hero-carousel" data-ride="carousel" data-interval="5000">
+        <div id="b2bHeroCarousel" class="carousel slide b2b-hero-carousel" data-ride="carousel" data-interval="6000">
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators b2b-hero-indicators" style="margin-bottom:30px;">
+                <li data-target="#b2bHeroCarousel" data-slide-to="0" class="active" style="width:10px; height:10px; border-radius:50%; background-color:rgba(255,255,255,0.5); border:none; margin:0 6px;"></li>
+                <li data-target="#b2bHeroCarousel" data-slide-to="1" style="width:10px; height:10px; border-radius:50%; background-color:rgba(255,255,255,0.5); border:none; margin:0 6px;"></li>
+                <li data-target="#b2bHeroCarousel" data-slide-to="2" style="width:10px; height:10px; border-radius:50%; background-color:rgba(255,255,255,0.5); border:none; margin:0 6px;"></li>
+                <li data-target="#b2bHeroCarousel" data-slide-to="3" style="width:10px; height:10px; border-radius:50%; background-color:rgba(255,255,255,0.5); border:none; margin:0 6px;"></li>
+                <li data-target="#b2bHeroCarousel" data-slide-to="4" style="width:10px; height:10px; border-radius:50%; background-color:rgba(255,255,255,0.5); border:none; margin:0 6px;"></li>
+                <li data-target="#b2bHeroCarousel" data-slide-to="5" style="width:10px; height:10px; border-radius:50%; background-color:rgba(255,255,255,0.5); border:none; margin:0 6px;"></li>
+            </ol>
+
             <div class="carousel-inner">
-                <!-- Slide 1: 공사비 검색 -->
+
+                <!-- Slide 1: CONCOST -->
                 <div class="carousel-item active">
-                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider13.jpg');"></div>
-                    <div class="b2b-hero-overlay"></div>
-                    <div class="b2b-hero-content">
-                        <h2 class="b2b-slide-title" style="color:#fff;">공사비닷컴</h2>
-                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">대한민국 건설 공사비를 건물종류, 위치, 면적, 연도별로 확인하세요.</p>
-                        <div class="b2b-slide-actions">
-                            <a href="./front/data/gongsabi/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">공사비 검색하기 <i class="fas fa-search ml-2"></i></a>
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider_concost.png'); background-position: right center;"></div>
+                    <div class="b2b-hero-overlay" style="background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.6) 40%, rgba(15,23,42,0) 100%);"></div>
+                    <div class="b2b-hero-content" style="text-align: left; max-width: 1400px; margin: 0 auto; padding-left: 40px; justify-content: center; display: flex; flex-direction: column;">
+                        <h2 class="b2b-slide-title" style="color:#fff; font-size:48px; line-height:1.3; font-weight:800; text-align:left;">고객이 원하는 시간에<br>최상의 결과를 제공하자</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9); font-size:18px; margin-top:20px; max-width:600px; text-align:left;">20여 년간의 경험을 바탕으로 최고의 결과를 추구하며, 건설 견적·적산·공사비 검토 서비스를 제공합니다.</p>
+                        <div style="margin-top:15px; color:#94A3B8; font-size:15px; line-height:1.8;">
+                            · 수량산출 · 설계변경 · 건설클레임<br>
+                            · 해외/FED 견적 · 공사비 적정성 검토
+                        </div>
+                        <div class="b2b-slide-actions" style="margin-top:40px; justify-content:flex-start;">
+                            <a href="https://con-cost.co.kr/" target="_blank" class="b2b-btn-primary" style="padding:16px 36px; font-size:16px; border-radius:30px; font-weight:700;">홈페이지 바로가기 <i class="fas fa-external-link-alt ml-2"></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 2: 공사비 교육 -->
+
+                <!-- Slide 2: 공사비 검색 -->
                 <div class="carousel-item">
-                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider15.jpg');"></div>
-                    <div class="b2b-hero-overlay"></div>
-                    <div class="b2b-hero-content">
-                        <h2 class="b2b-slide-title" style="color:#fff;">현장 기술자를 위한<br>공사비 실무 교육</h2>
-                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">공사비 기초부터 설계변경, 수량산출까지 체계적으로 학습하세요.</p>
-                        <div class="b2b-slide-actions">
-                            <a href="./front/education/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">교육 콘텐츠 보기 <i class="fas fa-laptop-code ml-2"></i></a>
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider13.jpg');"></div>
+                    <div class="b2b-hero-overlay" style="background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.6) 40%, rgba(15,23,42,0) 100%);"></div>
+                    <div class="b2b-hero-content" style="text-align: left; max-width: 1400px; margin: 0 auto; padding-left: 40px; justify-content: center; display: flex; flex-direction: column;">
+                        <h2 class="b2b-slide-title" style="color:#fff; font-size:48px; line-height:1.3; font-weight:800; text-align:left;">공사비닷컴</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9); font-size:18px; margin-top:20px; max-width:600px; text-align:left;">대한민국 건설 공사비를 건물종류, 위치, 면적, 연도별로 확인하세요.</p>
+                        <div style="margin-top:15px; color:#94A3B8; font-size:15px; line-height:1.8;">
+                            설계가·도급가·실행가 기준의 공사비 데이터를 검색할 수 있습니다.
+                        </div>
+                        <div class="b2b-slide-actions" style="margin-top:40px; justify-content:flex-start;">
+                            <a href="./front/data/gongsabi/" class="b2b-btn-primary" style="padding:16px 36px; font-size:16px; border-radius:30px; font-weight:700;">공사비 검색하기 <i class="fas fa-search ml-2"></i></a>
                         </div>
                     </div>
                 </div>
+
                 <!-- Slide 3: 내역서 작성 -->
                 <div class="carousel-item">
-                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/main_section2.jpg');"></div>
-                    <div class="b2b-hero-overlay"></div>
-                    <div class="b2b-hero-content">
-                        <h2 class="b2b-slide-title" style="color:#fff;">실무에 바로 쓰는<br>내역서 자동 작성</h2>
-                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">적산, 수량산출, 내역서 작성 흐름을 한 곳에서 확인하세요.</p>
-                        <div class="b2b-slide-actions">
-                            <a href="./front/report/geonchuk/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">내역서 작성하기 <i class="fas fa-file-invoice ml-2"></i></a>
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider15.jpg');"></div>
+                    <div class="b2b-hero-overlay" style="background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.6) 40%, rgba(15,23,42,0) 100%);"></div>
+                    <div class="b2b-hero-content" style="text-align: left; max-width: 1400px; margin: 0 auto; padding-left: 40px; justify-content: center; display: flex; flex-direction: column;">
+                        <h2 class="b2b-slide-title" style="color:#fff; font-size:48px; line-height:1.3; font-weight:800; text-align:left;">실무에 바로 쓰는<br>내역서 작성</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9); font-size:18px; margin-top:20px; max-width:600px; text-align:left;">적산, 수량산출, 공종별 내역 구성까지 실무 흐름에 맞춰 작성하세요.</p>
+                        <div style="margin-top:15px; color:#94A3B8; font-size:15px; line-height:1.8;">
+                            건축 내역서 작성과 공사비 산정 과정을 한 곳에서 관리할 수 있습니다.
+                        </div>
+                        <div class="b2b-slide-actions" style="margin-top:40px; justify-content:flex-start;">
+                            <a href="./front/report/geonchuk/" class="b2b-btn-primary" style="padding:16px 36px; font-size:16px; border-radius:30px; font-weight:700;">내역서 작성하기 <i class="fas fa-file-invoice ml-2"></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 4: 커뮤니티 -->
+
+                <!-- Slide 4: 공사비 교육 -->
+                <div class="carousel-item">
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider6.jpg');"></div>
+                    <div class="b2b-hero-overlay" style="background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.6) 40%, rgba(15,23,42,0) 100%);"></div>
+                    <div class="b2b-hero-content" style="text-align: left; max-width: 1400px; margin: 0 auto; padding-left: 40px; justify-content: center; display: flex; flex-direction: column;">
+                        <h2 class="b2b-slide-title" style="color:#fff; font-size:48px; line-height:1.3; font-weight:800; text-align:left;">현장 기술자를 위한<br>공사비 실무 교육</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9); font-size:18px; margin-top:20px; max-width:600px; text-align:left;">공사비 기초부터 설계변경, 수량산출, 내역서 작성까지 체계적으로 학습하세요.</p>
+                        <div style="margin-top:15px; color:#94A3B8; font-size:15px; line-height:1.8;">
+                            현동명 대표의 실무 경험을 바탕으로 한 공사비 교육 콘텐츠를 제공합니다.
+                        </div>
+                        <div class="b2b-slide-actions" style="margin-top:40px; justify-content:flex-start;">
+                            <a href="./front/education/" class="b2b-btn-primary" style="padding:16px 36px; font-size:16px; border-radius:30px; font-weight:700;">교육 콘텐츠 보기 <i class="fas fa-laptop-code ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5: 커뮤니티 -->
                 <div class="carousel-item">
                     <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider14.jpg');"></div>
-                    <div class="b2b-hero-overlay"></div>
-                    <div class="b2b-hero-content">
-                        <h2 class="b2b-slide-title" style="color:#fff;">건설 실무자를 연결하는 공간</h2>
-                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9);">공사비 정보, 자료, 구인구직, 실무 질문을 함께 나누세요.</p>
-                        <div class="b2b-slide-actions">
-                            <a href="./front/community/market/" class="b2b-btn-primary" style="padding:16px 32px; font-size:16px; border-radius:30px;">커뮤니티 보기 <i class="fas fa-users ml-2"></i></a>
+                    <div class="b2b-hero-overlay" style="background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.6) 40%, rgba(15,23,42,0) 100%);"></div>
+                    <div class="b2b-hero-content" style="text-align: left; max-width: 1400px; margin: 0 auto; padding-left: 40px; justify-content: center; display: flex; flex-direction: column;">
+                        <h2 class="b2b-slide-title" style="color:#fff; font-size:48px; line-height:1.3; font-weight:800; text-align:left;">건설 실무자를 연결하는 공간</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9); font-size:18px; margin-top:20px; max-width:600px; text-align:left;">공사비 정보, 자료, 구인구직, 실무 질문을 함께 나누세요.</p>
+                        <div style="margin-top:15px; color:#94A3B8; font-size:15px; line-height:1.8;">
+                            현장 실무자와 적산·견적 전문가가 함께 정보를 공유하는 공간입니다.
+                        </div>
+                        <div class="b2b-slide-actions" style="margin-top:40px; justify-content:flex-start;">
+                            <a href="./front/community/market/" class="b2b-btn-primary" style="padding:16px 36px; font-size:16px; border-radius:30px; font-weight:700;">커뮤니티 보기 <i class="fas fa-users ml-2"></i></a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Slide 6: ES 물가변동 -->
+                <div class="carousel-item">
+                    <div class="b2b-hero-bg" style="background-image: url('./public/static/img/slider_es.png'); background-position: right center;"></div>
+                    <div class="b2b-hero-overlay" style="background: linear-gradient(90deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.6) 40%, rgba(15,23,42,0) 100%);"></div>
+                    <div class="b2b-hero-content" style="text-align: left; max-width: 1400px; margin: 0 auto; padding-left: 40px; justify-content: center; display: flex; flex-direction: column;">
+                        <div style="color:var(--b2b-accent-green); font-weight:700; font-size:18px; letter-spacing:1px; margin-bottom:10px;">ES 물가변동</div>
+                        <h2 class="b2b-slide-title" style="color:#fff; font-size:48px; line-height:1.3; font-weight:800; text-align:left;">전문적인 가격 조정<br>관리 시스템</h2>
+                        <p class="b2b-slide-desc" style="color:rgba(255,255,255,0.9); font-size:18px; margin-top:20px; max-width:600px; text-align:left;">건설 계약 물가변동 조정을 위한 전문 플랫폼</p>
+                        <div style="margin-top:15px; color:#94A3B8; font-size:15px; line-height:1.8;">
+                            Kd계산, 지수 관리, PDF 보고서 자동 생성까지 하나의 시스템에서 관리하세요.
+                        </div>
+                        <div class="b2b-slide-actions" style="margin-top:40px; justify-content:flex-start;">
+                            <a href="https://es.con-cost.co.kr/" target="_blank" class="b2b-btn-primary" style="padding:16px 36px; font-size:16px; border-radius:30px; font-weight:700; background-color:#10B981; border:none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">ES 물가변동 바로가기 <i class="fas fa-external-link-alt ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <a class="carousel-control-prev" href="#b2bHeroCarousel" role="button" data-slide="prev" style="width:5%;">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="width:40px;height:40px;background-color:rgba(0,0,0,0.5);border-radius:50%;background-size:20px;"></span>
+            <!-- Custom Controls -->
+            <a class="carousel-control-prev" href="#b2bHeroCarousel" role="button" data-slide="prev" style="width:10%; opacity:0.8; z-index:100;">
+                <div style="width:50px; height:50px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.2); transition:all 0.3s ease;">
+                    <i class="fas fa-chevron-left" style="font-size:20px; color:#fff;"></i>
+                </div>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#b2bHeroCarousel" role="button" data-slide="next" style="width:5%;">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="width:40px;height:40px;background-color:rgba(0,0,0,0.5);border-radius:50%;background-size:20px;"></span>
+            <a class="carousel-control-next" href="#b2bHeroCarousel" role="button" data-slide="next" style="width:10%; opacity:0.8; z-index:100;">
+                <div style="width:50px; height:50px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.2); transition:all 0.3s ease;">
+                    <i class="fas fa-chevron-right" style="font-size:20px; color:#fff;"></i>
+                </div>
                 <span class="sr-only">Next</span>
             </a>
         </div>
