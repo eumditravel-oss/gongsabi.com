@@ -172,6 +172,10 @@ h1, h2, h3, h4, h5, h6 { color: var(--b2b-text-dark); font-weight: 700; }
 .b2b-header:hover .b2b-megamenu { opacity: 1; visibility: visible; transform: translateY(0); }
 
 .b2b-megamenu-inner {
+    display: flex;
+    flex-wrap: nowrap !important;
+    justify-content: space-between;
+    width: 100%;
   max-width: 1400px; margin: 0 auto; padding: 40px;
   display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px;
 }
@@ -302,7 +306,11 @@ input:focus, select:focus, textarea:focus { border-color: var(--b2b-primary); bo
   .b2b-slide-title { font-size: 32px; }
   .b2b-search-fields { grid-template-columns: 1fr; }
   .b2b-search-btn { grid-column: 1; }
-  .b2b-megamenu-inner { grid-template-columns: 1fr; }
+  .b2b-megamenu-inner {
+    display: flex;
+    flex-wrap: nowrap !important;
+    justify-content: space-between;
+    width: 100%; grid-template-columns: 1fr; }
 }
 
 /* ========================================================
@@ -739,4 +747,5 @@ table.table, .gongsabi-table, .company_ceo_table {
     line-height: 1.6;
     color: #475569 !important;
 }
+
 
