@@ -3179,22 +3179,26 @@ div.summary_count_content .count b {
     padding-top: 100px;
     padding-left: 50px;
     margin-bottom: 100px;
-    font-size: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 70px;
 }
 
 .company_ceo_info_wrapper > div {
-    display: inline-block;
-    vertical-align: top;
     font-size: 16px;
 }
 
 .company_ceo_info_wrapper .company_ceo_image {
-    width: 290px;
+    flex: 0 0 350px;
+}
+.company_ceo_info_wrapper .company_ceo_image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .company_ceo_info_wrapper .company_ceo_message {
-    padding-left: 70px;
-    width: 760px;
+    flex: 1;
 }
 
 .company_ceo_info_wrapper .company_ceo_message .ceo_message_title {
